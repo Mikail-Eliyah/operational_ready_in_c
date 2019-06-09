@@ -1,0 +1,14 @@
+$gcc -o hello_main hello_main.c hello_function.c -Wall -I./inc
+$./hello_main
+
+=============
+with makefile
+==============
+to compile:
+$ make
+
+to clean:
+$ make clean
+
+to compile and run:
+$ make run
