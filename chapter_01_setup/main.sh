@@ -20,8 +20,6 @@ main () {
     elif [ "$main_menu_input" = "3" ]; then
 		compile_and_run;
     elif [ "$main_menu_input" = "4" ]; then
-		repo_update_all_files_and_push_to_remote;
-    elif [ "$main_menu_input" = "5" ]; then
 		instruction_for_users;				
     elif [ "$main_menu_input" = "x" -o "$main_menu_input" = "X" ];then # -o := `or` and `||`
 		exit_program;

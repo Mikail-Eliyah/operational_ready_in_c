@@ -2,7 +2,7 @@
 # version: 2019-06-09_1156hr_48sec
 
 id_git='Mikail-Eliyah'
-git_target='git@github.com:Mikail-Eliyah/tutorial_git.git'
+git_target='git@github.com:Mikail-Eliyah/operational_ready_in_c.git'
 
 email_address= '<email_address>' # insert your email_address here
 

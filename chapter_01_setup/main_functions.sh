@@ -12,8 +12,7 @@ function print_menu() {
 	echo "Press 1 : make_clean"
 	echo "Press 2 : compile"
 	echo "Press 3 : compile_and_run"
-	echo "Press 4 : repo_update_all_files_and_push_to_remote"
-	echo "Press 5 : instruction_for_users"	
+	echo "Press 4 : instruction_for_users"	
 	
 	echo "Press 'x' or 'X' to exit the script"
 }
@@ -36,22 +35,6 @@ function compile(){
 	echo $demarcator
 }
 
-function set_up_repo_folder () {
-	echo "Create local repo (match remote repo name preferred):"
-	read repo_name
-	
-	if [ -f "$repo_name" ]; then
-		echo "$repo_name exist"
-	else 
-		mkdir $repo_name; 
-		echo "Do: cd " $repo_name
-		
-		echo $demarcator
-		echo $repo_name" created."
-	fi
-	
-}
-
 function instruction_for_users(){
 	echo "
 	=================== INSTRUCTION START ===================
@@ -59,7 +42,8 @@ function instruction_for_users(){
 	
 	[Notes]:
 	1. block_function_from_proceding() is a function to disable function. Comment it to deactivate / unblock it.
-	2. Do update config_profile.sh to ensure you have all the supporting parameters.
+	2. Do update config.sh to ensure you have all the supporting parameters.
+	3. Usage : semi-automate make clean, compile, and run.
 	
 	=================== INSTRUCTION END ===================
 	"
