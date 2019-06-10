@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <limits.h> 
 
 /*
 ==================================================
@@ -27,6 +28,14 @@
 #define EXTRACT_BITS(msb, lsb, numberOfBits, targetValue)      ((((BIT_MASK((numberOfBits-1), 0)) <<lsb) & BIT_MASK(msb, lsb)) &targetValue) \
                                                                                               >>lsb
 
+/*
+==================================================
+=============== || DEFINE TYPES || ===============
+==================================================
+*/
+  typedef unsigned int uint32;
+  typedef unsigned intsize_t;
+
 
 /*
 ==================================================
@@ -50,3 +59,7 @@ int getBit(int n, int index);
 int setBit(int n, int index, int bitValue);
 
 int binStrToDecValue (char binStr[], int binStrLen);
+
+int countBytesInArray (char *includes[]);
+int find_MSB32(uint32 a);
+int find_bn_MSB(const uint32 *v, size_t N);

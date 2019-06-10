@@ -85,7 +85,8 @@ int setBit(int n, int index, int bitValue)
  }
 }
 
-int binStrToDecValue (char binStr[], int binStrLen) {
+int binStrToDecValue (char binStr[], int binStrLen) 
+{
      int i = 0;
      int decValue = 0;
      
@@ -99,5 +100,45 @@ int binStrToDecValue (char binStr[], int binStrLen) {
 }
 
 
+int countBytesInArray (char *includes[]) 
+{
+    //size_t count = 0;
+    char count = 0;
+    while (includes[count] != NULL) {
+          printf("\t %c\n", includes[count]); 
+          count++;
+    }
+    // Length is count.
+    
+    return count;
+}
+
+/* Returns the number of leading zero bits in a */
+/* for ARM there is a machine instruction that does this. */
+int find_MSB32(uint32 a) 
+{
+   int n = 0;
+#define MSB_STEP(k) if (((0 - (0x80000000U >> (k-1))) & a) == 0) {a <<= k;  n += k;}
+
+   MSB_STEP(16);
+   MSB_STEP(8);
+   MSB_STEP(4);
+   MSB_STEP(2);
+   MSB_STEP(1);
+   return (n);
+}
+
+//  get the position of the 1st non-zero bit
+/* returns the bit position (0 is LSB) of the MSB in a bignum, v.
+ * Returns -1 if the bignum is zero, -2 on error  */
+int find_bn_MSB(const uint32 *v, size_t N)
+{
+   if (N >= INT_MAX / 32) return (-2);
+   while(N != 0 && v[N-1] == 0) { /* >=, but N is unsigned */
+      --N;
+   }
+   if (N == 0) return (-1);
+   return (32 * N - 1 - find_MSB32(v[N-1]));
+}
 
 

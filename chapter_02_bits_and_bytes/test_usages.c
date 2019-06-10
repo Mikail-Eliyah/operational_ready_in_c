@@ -66,6 +66,15 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
     char* binString = "11011101101"; 
                
     printf("Decimal value >>> %d\n", binStrToDecValue(binString, strlen(binString))); // Answer: 1773
+	
+	printf("%s\n", DEMARCATOR_STRING);
+	 uint32 value = 4096*4; // position 14 // 1; // position 0
+     int position = 0;
+     
+     position = find_bn_MSB(&value, 1);
+	 printf("The result [%d] -> '%s'\n", value, binrep(value, buff, BUFFER_SIZE));
+          
+     printf("position: %d\n", position);   
 
 
 	INFO(">> ");
