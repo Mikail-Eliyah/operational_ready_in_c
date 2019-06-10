@@ -18,6 +18,15 @@
 	
 #define BUFFER_SIZE 32
 
+// msb, lsb are positions
+#define BIT(n)                           (1U << (n))
+#define BIT_MASK(msb, lsb)               (((((uint32_t)-1) << (31U-msb)) >> (31U-msb+lsb)) <<lsb)  // create bit mask
+#define BIT_VAL(msb, lsb, val)           (((val) <<lsb) & BIT_MASK(msb, lsb))
+
+#define EXTRACT_BITS(msb, lsb, numberOfBits, targetValue)      ((((BIT_MASK((numberOfBits-1), 0)) <<lsb) & BIT_MASK(msb, lsb)) &targetValue) \
+                                                                                              >>lsb
+
+
 /*
 ==================================================
 ============= || USAGE FUNCTIONS || ==============

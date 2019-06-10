@@ -42,7 +42,24 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
 	
 	unsigned char v = 255;
 	printbits(v);
-	print("\n")
+	printf("\n");
+	printf("%s\n", DEMARCATOR_STRING);
+	printf("%u \n", (uint32_t)-1); // get max value of uint32_t
+    printf("%u \n", (127U + 31U)); // add unsigned values
+    printf("%u \n", (1U << (5))); // 0 is the last bit at lsb
+    
+    printf("%u \n", BIT_MASK(12, 8));    // create a mask from MSB to LSB position stated, eg. BIT_MASK(5, 3) = 111000, BIT_MASK(12, 8) = 1111100000000, 
+    printf("%s \n", binrep (BIT_MASK(12, 8), buff, BUFFER_SIZE));
+    
+    printf("%u \n", BIT_VAL(12, 8, 2));    // val is another mask to obtain the bit values ... get a mask from MSB to LSB position stated, eg. BIT_MASK(12, 8, 2) = [10] 0000 0000 & 111[11] 0000 0000, 
+    
+    printf("%s \n", binrep (BIT_VAL(12, 8, 2), buff, BUFFER_SIZE));
+    
+    // EXTRACT_BITS(msb, lsb, numberOfBits, targetValue), eg: targetValue = 10[11 0011] 0000 0000b (45,824d), numberOfBits = 6 bits for [11 0011]
+    // msb = 13, lsb = 8
+    printf("%u \n", EXTRACT_BITS(13, 8, 6, 45824));  
+    printf("%s \n", binrep ((EXTRACT_BITS(13, 8, 6, 45824)), buff, BUFFER_SIZE));  // 51
+
 
 	INFO(">> ");
 		
