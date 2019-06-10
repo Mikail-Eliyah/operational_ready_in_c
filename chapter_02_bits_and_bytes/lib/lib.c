@@ -64,4 +64,26 @@ char* binrep (unsigned int val, char *buff, int sz) {
     return pbuff+1;
 }
 
+void printbits(unsigned char v) {
+  int i; // for C89 compatability
+  for(i = 7; i>= 0; i--) 
+putchar('0' + ((v >>i) & 1));
+}
+
+int getBit(int n, int index) 
+{
+ return ((n & (1 << index)) > 0);
+}
+
+int setBit(int n, int index, int bitValue) 
+{
+ if (bitValue) {
+ return n | (1 << index);
+ } else {
+ int mask = ~(1 << index);
+ return n & mask;
+ }
+}
+
+
 

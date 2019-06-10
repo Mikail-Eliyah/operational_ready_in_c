@@ -28,6 +28,21 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
     answer = updateBits(1024, 21, 2, 6);
     
     printf("The result [%d] -> '%s'\n", answer, binrep(answer,buff, BUFFER_SIZE));
+	
+	printf("%s\n", DEMARCATOR_STRING);
+	 int num = 255; // 191d:1011 1111b (position 6 = '0') // 255d: 1111 1111b
+ 
+	num = setBit(num, 6, 0); // set bit to '0'
+	num = getBit(num, 6);
+	printf ("Bit value: %d\n", num);
+ 
+	num = setBit(num, 6, 1); // set bit to '1'
+	num = getBit(num, 6);
+	printf ("Bit value: %d\n", num);
+	
+	unsigned char v = 255;
+	printbits(v);
+	print("\n")
 
 	INFO(">> ");
 		

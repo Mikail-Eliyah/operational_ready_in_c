@@ -34,4 +34,7 @@ int test_usage_insert_bits_as_substring_and_display_binary_string(void);
 int updateBits(int targetBinary, int binaryToInsert, int positionStartToInsert, int positionEndToInsert);
 
 char* binrep (unsigned int val, char *buff, int sz);
+void printbits(unsigned char v);
 
+int getBit(int n, int index);
+int setBit(int n, int index, int bitValue);
