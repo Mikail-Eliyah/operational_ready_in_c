@@ -142,3 +142,9 @@ int find_bn_MSB(const uint32 *v, size_t N)
 }
 
 
+// Mask all odd bits with 10101010 in binary (which is 0xAA), then shift them left to put them in the even bits. 
+// Then, perform a similar operation for even bits. This takes a total 5 instructions.
+int swapOddEvenBits(int x) 
+{
+ return ( ((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << 1) );
+}

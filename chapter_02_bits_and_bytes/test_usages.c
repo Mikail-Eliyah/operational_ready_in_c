@@ -76,6 +76,9 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
           
      printf("position: %d\n", position);   
 
+	printf("%s\n", DEMARCATOR_STRING);
+	int a = 105; // 85d: 101 0101b => 170d: 1010 1010b; 105d: 0110 1001b => 150d = 1001 0110b
+	printf ("After swapping odd and even bits, the result is : %d.\n", swapOddEvenBits(a));
 
 	INFO(">> ");
 		

@@ -63,3 +63,4 @@ int binStrToDecValue (char binStr[], int binStrLen);
 int countBytesInArray (char *includes[]);
 int find_MSB32(uint32 a);
 int find_bn_MSB(const uint32 *v, size_t N);
+int swapOddEvenBits(int x);
