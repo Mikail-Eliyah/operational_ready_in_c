@@ -59,6 +59,13 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
     // msb = 13, lsb = 8
     printf("%u \n", EXTRACT_BITS(13, 8, 6, 45824));  
     printf("%s \n", binrep ((EXTRACT_BITS(13, 8, 6, 45824)), buff, BUFFER_SIZE));  // 51
+	
+	printf("%s\n", DEMARCATOR_STRING);
+	// int i = 0;
+	int decValue = 0;
+    char* binString = "11011101101"; 
+               
+    printf("Decimal value >>> %d\n", binStrToDecValue(binString, strlen(binString))); // Answer: 1773
 
 
 	INFO(">> ");

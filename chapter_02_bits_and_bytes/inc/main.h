@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 /*
 ==================================================
@@ -47,3 +48,5 @@ void printbits(unsigned char v);
 
 int getBit(int n, int index);
 int setBit(int n, int index, int bitValue);
+
+int binStrToDecValue (char binStr[], int binStrLen);

@@ -85,5 +85,19 @@ int setBit(int n, int index, int bitValue)
  }
 }
 
+int binStrToDecValue (char binStr[], int binStrLen) {
+     int i = 0;
+     int decValue = 0;
+     
+     for (i=0;i<binStrLen;i++) {
+         if (binStr[i] == '1') 
+            decValue = decValue * 2 + 1; 
+         else if (binStr[i] == '0') 
+              decValue *= 2; 
+     }      
+     return decValue;
+}
+
+
 
 
