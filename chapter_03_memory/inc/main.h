@@ -10,6 +10,9 @@
 ============= || DEFINE CONSTANTS || =============
 ==================================================
 */
+#define TRUE 1
+#define FALSE 0
+
 #define PI 3.14159265
 #define DEMARCATOR_STRING "==========================================================="
 
@@ -38,6 +41,7 @@ int test_usage_check_on_malloc_success_and_location(void);
 int test_usage_locating_stack_address(void);
 int test_usage_of_memcpy(void);
 int test_usage_work_area(void);
+int test_usage_memory_bound(void);
 
 bool check_malloc_success_status(char* memory_location_start);
 
@@ -53,3 +57,5 @@ int zerorize_memory_contents(unsigned char* start_of_location_memory, int length
 int fill_memory_contents_with_given_value (unsigned char* start_of_location_memory, int length, int given_value);
 
 void print_memory_location_of_malloc(void* memory_location, char* description);
+
+void changeContents (int* a, int sizeOfA, int increment, int *b, int sizeOfB);

@@ -55,4 +55,35 @@ int fill_memory_contents_with_given_value (unsigned char* start_of_location_memo
     }
 }
 
+const void *integritycheck_text_start(void) {
+    return (void *)integritycheck_text_start;
+}
+
+const void *integritycheck_text_mid(void) {
+    return (void *)integritycheck_text_mid;
+}
+
+const void *integritycheck_text_end(void) {
+    return (void *)integritycheck_text_end;
+}
+
+void changeContents (int* a, int sizeOfA, int increment, int *b, int sizeOfB) {
+    int i, indexOfA;
+
+    for (i=0;i<sizeOfA;i++)
+        *(a+i) = *(a+i) + increment;
+
+    printf("sizeof(b): %d \n", sizeof(b));
+    printf("sizeof(*b)/sizeof(int): %d \n", sizeof(*b)/sizeof(int));
+
+    printf("sizeof(a): %d \n", sizeof(a));
+    printf("sizeof(*a)/sizeof(int): %d \n", sizeof(*a)/sizeof(int));
+
+    for (i=0;i<sizeOfB;i++) {
+        indexOfA = (i%(sizeOfA));
+        printf("position of A: %d \n", indexOfA);
+        *(b+i) = *(a+indexOfA);
+    }
+}
+
 

@@ -10,6 +10,23 @@
 
 int display_N_values_per_line = 5;
 
+int test_usage_memory_bound()
+{ 
+	INFO(">> ");
+	
+	int* memoryLocation = 0;
+        
+     memoryLocation = (int*) integritycheck_text_start();
+     printf("memoryLocation [start]: %x \n", memoryLocation);
+     memoryLocation = (int*) integritycheck_text_mid();
+     printf("memoryLocation [mid]: %x \n", memoryLocation);
+     memoryLocation = (int*) integritycheck_text_end();
+     printf("memoryLocation [end]: %x \n", memoryLocation);    
+
+	printf("%s\n", DEMARCATOR_STRING);
+	
+}
+
 int test_usage_work_area()
 { 
 	INFO(">> ");
@@ -92,6 +109,27 @@ Before memmovedest = abcdefghi, src = 123456789
 After memmovedest = 12cdefghi, src = 123456789
 */   
 
+	printf("%s\n", DEMARCATOR_STRING);
+	
+	// int i;
+    int a[] = {0x1, 0x2, 0x3};
+    int factor = 2;
+    int b[(sizeof(a)/sizeof(int))*2];
+
+    for (i = (sizeof(a)/sizeof(int)-1); i >= 0;i--) { // -1 for indexing
+        printf("0x%x ", a[i]);
+    } printf("\n");
+
+    changeContents (a, (sizeof(a)/sizeof(int)), 0x5, b, (sizeof(b)/sizeof(int)));
+
+    for (i = (sizeof(a)/sizeof(int)-1); i >= 0;i--) { // -1 for indexing
+        printf("0x%x ", a[i]);
+    } printf("\n");
+
+
+    for (i = (sizeof(b)/sizeof(int)-1); i >= 0;i--) { // -1 for indexing
+        printf("0x%x ", b[i]);
+    } printf("\n");
 
 	printf("%s\n", DEMARCATOR_STRING);
 }
