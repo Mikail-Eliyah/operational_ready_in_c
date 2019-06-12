@@ -196,3 +196,178 @@ int hamming_distance_between_2_integer (int a, int b) {
     return count;
 }
 
+
+int checkEndian(void)
+{
+	int isLittleEndian = 1;
+		
+    union  
+    {  
+        short   inum;  
+        char c[sizeof(short)];  
+    } un;  
+
+    un.inum=0x0102;  
+
+    if(un.c[0]==1 && un.c[1]==2) 
+    {
+        printf("big_endian.\n"); 
+        isLittleEndian = 0;
+    }
+    else if(un.c[0]==2 && un.c[1]==1)
+    {
+        printf("little_endian.\n"); 
+
+        isLittleEndian = 1;
+    }
+
+	return isLittleEndian;
+}
+
+void shift_left(char *src, char * dst, int len, int n, int isLittleEndian)
+{
+    int shiftBytes = n/8;
+    int shiftBits = n%8;
+
+    memset(dst, 0, len);
+    memcpy(dst, src + shiftBytes, len - shiftBytes);
+
+    if (shiftBits)
+    {
+        int i = 0;
+        unsigned short tmp = 0;
+
+        for ( i = 0; i < len; i++)
+        {
+            if (isLittleEndian)
+            {
+                tmp = *(dst+i) << 8 | *(dst+i+1);
+                tmp <<= shiftBits;
+                *(dst+i) = *((char *)&tmp + 1);
+            }
+            else
+            {
+                tmp = *(short *)(dst+i);
+                tmp <<= shiftBits;
+                *(dst+i) = *((char *)&tmp);
+            }
+        }
+    }
+}
+
+void shift_right(char *src, char * dst, int len, int n, int isLittleEndian)
+{
+    int shiftBytes = n/8;
+    int shiftBits = n%8;
+
+    memset(dst, 0, len);
+    memcpy(dst + shiftBytes, src, len - shiftBytes);
+
+    if (shiftBits) {
+        int i = 0;
+        unsigned short tmp = 0;
+
+        for ( i = len -1; i >= 0; i--)   {
+            if (isLittleEndian)    {
+                tmp = *(dst+i-1) << 8 | *(dst+i);
+                tmp >>= shiftBits;
+                *(dst+i) = *((char *)&tmp);
+            }
+            else
+            {
+                tmp = *(short *)(dst+i-1);
+                tmp >>= shiftBits;
+                *(dst+i) = *((char *)&tmp+1);
+            }
+        }
+    }
+}
+
+int getBit(char *src, int n){
+    unsigned char tmp = *(src + n/8);
+    unsigned char mask = (0x1 << (8 - n%8 - 1));
+    int bit = 0;
+
+    bit =  (tmp & mask) > 0;
+    printf("%d", bit);
+}
+
+void setBit(char *src, int n, int bit){
+    unsigned char * pTmp = src + n/8;
+    unsigned char mask = (0x1 << (8 - n%8 - 1));
+
+    if (bit)
+    {
+        *pTmp |= mask;
+    }
+    else
+    {
+        *pTmp &= ~mask;
+    }
+}
+
+void dumpBin(unsigned char *src, int len)
+{
+    int i = 0;
+    int j = 0;
+    unsigned char mask = 0;
+
+    for ( i = 0; i < len; i++)
+    {
+        for ( j = 0; j < 8; j++)
+        {
+            mask = 0x1 << 8 - j - 1;
+            printf("%d",(*(src + i) & mask) > 0); 
+        }    
+    }
+}
+
+/*
+unsigned int shiftBits (unsigned int input, int numberOfShifts, int direction) {
+
+    unsigned int shiftedBits = input;
+    int i = 0;
+
+    //for (i = 0; i < numberOfShifts; i++) {
+        if (direction == LEFT) {
+            shiftedBits = shiftedBits << numberOfShifts;
+        } else {
+            shiftedBits = shiftedBits >> numberOfShifts;
+        }
+    //}
+
+    return shiftedBits;
+}
+
+unsigned int generateBits (int lengthOfBits) {
+
+    // int lengthOfBits = 7;
+    unsigned int mask = (1<<lengthOfBits) - 1; // fill mask with <length> bits of 1s
+
+    return mask;
+}
+
+unsigned int getBits (unsigned int byteCode, int startPosition, int endPosition) {
+
+    int numberOfBitsToGet = startPosition - endPosition + 1;
+    unsigned int mask = generateBits (numberOfBitsToGet);
+    mask = shiftBits (mask, endPosition, LEFT);
+
+    unsigned int bitsOfInterest = byteCode & mask;
+    bitsOfInterest = shiftBits (bitsOfInterest, endPosition, RIGHT);
+
+    return bitsOfInterest;
+}
+
+int sign_extend(int bits, int v)
+{
+  if (v & (1 << bits))
+    {
+      // Need to extend the 1
+      return (v | (-1 << bits));
+    }
+  else
+    return v;
+}
+
+*/

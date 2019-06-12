@@ -10,6 +10,58 @@
 char buffer[BUFFER_SIZE + 1];	// char* buffer = malloc(BUFFER_SIZE + 1);
 
 int display_N_values_per_line = 5;
+int isLittleEndian = 1;
+
+
+int test_usage_bit_wise_operations()
+{
+    char *record = "NAXHDKAN552ajdasdadNDfadsEBEAfA8gda5214S";
+    //char *record = "NAXHDKA";
+
+    int recordLen = strlen(record);
+    char * buffer = NULL;
+    int i = 0;
+
+    isLittleEndian = checkEndian();
+
+    recordLen = recordLen + recordLen%2;
+    buffer = malloc(recordLen);
+    memcpy(buffer, record, recordLen);
+
+    printf("\n input bit stream:\n");
+    dumpBin(buffer, recordLen);
+
+
+    printf("\n bit stream from getBit:\n");
+    for ( i = 0; i < recordLen*8; i++)
+    {
+        getBit(buffer, i);
+    }
+
+
+    setBit(buffer, 8, 1);
+    setBit(buffer, 9, 0);
+    setBit(buffer, 10, 1);
+    setBit(buffer, 11, 1);
+    printf("\n bit stream after setBit:\n");
+    dumpBin(buffer, recordLen);
+
+
+    shift_left(record, buffer, recordLen, 1, isLittleEndian);
+    printf("\n bit stream after shift_left:\n");
+    dumpBin(buffer, recordLen);
+
+
+    shift_right(record, buffer, recordLen, 9, isLittleEndian);
+    printf("\n bit stream after shift_right:\n");
+    dumpBin(buffer, recordLen);
+
+    printf("\n");
+
+    free(buffer);
+
+}
+
 
 int test_usage_bit_wise_determination()
 { 

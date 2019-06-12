@@ -4,6 +4,7 @@
 #include <string.h>
 #include <limits.h> 
 
+
 /*
 ==================================================
 ============= || DEFINE CONSTANTS || =============
@@ -28,6 +29,7 @@
 #define EXTRACT_BITS(msb, lsb, numberOfBits, targetValue)      ((((BIT_MASK((numberOfBits-1), 0)) <<lsb) & BIT_MASK(msb, lsb)) &targetValue) \
                                                                                               >>lsb
 
+
 /*
 ==================================================
 =============== || DEFINE TYPES || ===============
@@ -48,6 +50,8 @@ int test_usage_determine_buffer_size_and_bit_position(void);
 int test_usage_get_set_bits(void);
 int test_usage_display_binary_string(void);
 int test_usage_bit_wise_determination(void);
+
+int test_usage_bit_wise_operations(void);
 
 /*
 =========================================================
@@ -74,3 +78,11 @@ int find_MSB_bit_position(const uint32 *v, size_t N);
 int swap_odd_even_bits(int x);
 
 int hamming_distance_between_2_integer (int a, int b);
+
+int checkEndian(void);
+
+void shift_left(char *src, char * dst, int len, int n, int isLittleEndian);
+void shift_right(char *src, char * dst, int len, int n, int isLittleEndian);
+int getBit(char *src, int n);
+void setBit(char *src, int n, int bit);
+void dumpBin(unsigned char *src, int len);
