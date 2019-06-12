@@ -10,21 +10,6 @@
 char buffer[BUFFER_SIZE + 1];	// char* buffer = malloc(BUFFER_SIZE + 1);
 
 
-int test_usage_display_binary_string()
-{ 
-	INFO(">> ");
-	
-    char* binString = "11011101101"; 
-               
-    printf("Decimal value >>> %d\n", binary_string_to_decimal_value (binString, strlen(binString))); // Answer: 1773
-	  
-	unsigned char v = 255;
-	print_bits(v);
-	printf("\n");
-
-	printf("%s\n", DEMARCATOR_STRING);
-}
-
 int test_usage_insert_bits_as_substring_and_display_binary_string()
 { 
 	INFO(">> ");
@@ -40,17 +25,8 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
 	printf("number_of_bytes_allocated: %d \n", number_of_bytes_allocated);
     
 	printf("%s\n", DEMARCATOR_STRING);
+	
     int answer = 0;
-	
-	set_buffer_to_ones (&answer, 4); // 4 bytes
-	printf("After set_buffer_to_ones(): result [%d] -> '%s'\n", answer, display_unsigned_int_as_hex_string(answer, buffer, BUFFER_SIZE));
-	
-	zeroize_buffer (&buffer, (BUFFER_SIZE + 1));
-	
-	zeroize_buffer (&answer, 4);
-	printf("After zeroize_buffer(): result [%d] -> '%s'\n", answer, display_unsigned_int_as_hex_string(answer, buffer, BUFFER_SIZE));
-	zeroize_buffer (&buffer, (BUFFER_SIZE + 1));
-	
 	printf("Before update_bits(): result [%d] -> '%s'\n", answer, display_unsigned_int_as_hex_string(answer, buffer, BUFFER_SIZE));
 	zeroize_buffer (&buffer, (BUFFER_SIZE + 1));
 	printf("target binary string: '%s'\n", display_unsigned_int_as_hex_string(1024, buffer, BUFFER_SIZE));
@@ -73,7 +49,23 @@ int test_usage_insert_bits_as_substring_and_display_binary_string()
 /*
 
 */
-int test_usage_determine_buffer_size(){
+int test_usage_display_binary_string()
+{ 
+	INFO(">> ");
+	
+    char* binString = "11011101101"; 
+               
+    printf("Decimal value >>> %d\n", binary_string_to_decimal_value (binString, strlen(binString))); // Answer: 1773
+	  
+	unsigned char v = 255;
+	print_bits(v);
+	printf("\n");
+
+	printf("%s\n", DEMARCATOR_STRING);
+}
+
+
+int test_usage_determine_buffer_size_and_bit_position(){
 	INFO(">> ");
 	
 	int numberOfInputs = 3;
@@ -103,8 +95,8 @@ int test_usage_determine_buffer_size(){
      
 	int position = 0;
      
-    position = find_bn_MSB(&value, 1);
-	 printf("The result [%d] -> '%s'\n", value, display_unsigned_int_as_hex_string(value, buffer, BUFFER_SIZE));
+    position = find_MSB_bit_position(&value, 1);
+	printf("The result [%d] -> '%s'\n", value, display_unsigned_int_as_hex_string(value, buffer, BUFFER_SIZE));
           
     printf("position: %d\n", position); 
 	printf("%s\n", DEMARCATOR_STRING);
@@ -139,6 +131,16 @@ int test_usage_get_set_bits()
     printf("%u \n", EXTRACT_BITS(13, 8, 6, 45824));  
     printf("%s \n", display_unsigned_int_as_hex_string ((EXTRACT_BITS(13, 8, 6, 45824)), buffer, BUFFER_SIZE));  // 51
 	
+	int answer = 0;
+	
+	set_buffer_to_ones (&answer, 4); // 4 bytes
+	printf("After set_buffer_to_ones(): result [%d] -> '%s'\n", answer, display_unsigned_int_as_hex_string(answer, buffer, BUFFER_SIZE));
+	
+	zeroize_buffer (&buffer, (BUFFER_SIZE + 1));
+	
+	zeroize_buffer (&answer, 4);
+	printf("After zeroize_buffer(): result [%d] -> '%s'\n", answer, display_unsigned_int_as_hex_string(answer, buffer, BUFFER_SIZE));
+	zeroize_buffer (&buffer, (BUFFER_SIZE + 1));
 	
 	printf("%s\n", DEMARCATOR_STRING);
 }

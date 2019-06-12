@@ -131,7 +131,7 @@ int count_bytes_in_array (char *buffer[])
     return count;	// Length is count before detecting the NULL
 }
 
-/* Returns the number of leading zero bits in a */
+/* Returns the number of leading zero bits in value of uint32 */
 /* for ARM there is a machine instruction that does this. */
 int find_MSB32(uint32 a) 
 {
@@ -149,7 +149,7 @@ int find_MSB32(uint32 a)
 //  get the position of the 1st non-zero bit
 /* returns the bit position (0 is LSB) of the MSB in a bignum, v.
  * Returns -1 if the bignum is zero, -2 on error  */
-int find_bn_MSB(const uint32 *v, size_t N)
+int find_MSB_bit_position (const uint32 *v, size_t N)
 {
    if (N >= INT_MAX / 32) return (-2);
    while(N != 0 && v[N-1] == 0) { /* >=, but N is unsigned */
