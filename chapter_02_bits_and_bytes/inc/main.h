@@ -45,6 +45,8 @@
 // void myPrintHelloMake(void);
 int test_usage_insert_bits_as_substring_and_display_binary_string(void);
 int test_usage_determine_buffer_size(void);
+int test_usage_get_set_bits(void);
+int test_usage_display_binary_string(void);
 
 /*
 =========================================================

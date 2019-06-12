@@ -127,9 +127,8 @@ int count_bytes_in_array (char *buffer[])
           printf("buffer content[%d]: \t %c\n", count, buffer[count]); 
           count++;
     }
-    // Length is count.
     
-    return count;
+    return count;	// Length is count before detecting the NULL
 }
 
 /* Returns the number of leading zero bits in a */
