@@ -131,6 +131,24 @@ int count_bytes_in_array (char *buffer[])
     return count;	// Length is count before detecting the NULL
 }
 
+int count_bytes_in_array_buffer (char *buffer, int display_N_values_per_line) 
+{
+    int count = 0;
+    while (buffer[count] != NULL) {
+          printf("buffer content[%d]: %c\t", count, buffer[count]); 
+		  
+		  if ((count+1) % display_N_values_per_line == 0){
+			  printf("\n");
+		  }
+          count++;
+    }
+	printf("\n");
+	
+	printf("Number of characters: %d\n", count);
+    
+    return count;	// Length is count before detecting the NULL
+}
+
 /* Returns the number of leading zero bits in value of uint32 */
 /* for ARM there is a machine instruction that does this. */
 int find_MSB32(uint32 a) 

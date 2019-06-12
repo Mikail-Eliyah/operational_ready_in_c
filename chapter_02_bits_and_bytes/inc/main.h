@@ -67,6 +67,8 @@ int get_bit(int n, int index);
 int set_bit(int n, int index, int bitValue);
 
 int count_bytes_in_array (char *buffer[]);
+int count_bytes_in_array_buffer (char *buffer, int display_N_values_per_line);
+
 int find_MSB32(uint32 a);
 int find_MSB_bit_position(const uint32 *v, size_t N);
 int swap_odd_even_bits(int x);

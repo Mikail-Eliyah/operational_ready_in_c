@@ -9,6 +9,8 @@
 
 char buffer[BUFFER_SIZE + 1];	// char* buffer = malloc(BUFFER_SIZE + 1);
 
+int display_N_values_per_line = 5;
+
 int test_usage_bit_wise_determination()
 { 
 	INFO(">> ");
@@ -110,6 +112,36 @@ int test_usage_determine_buffer_size_and_bit_position(){
           
     printf("position: %d\n", position); 
 	printf("%s\n", DEMARCATOR_STRING);
+	
+	int MSG_LEN = 0;
+     
+    unsigned char* msg =   "056b04216fe5f354ac77250a4b6b0c8525a85c59b0bd80c56450a22d5f438e596a333aa875e291"
+    "dd43f48cb88b9d5fc0d499f9fcd1c397f9afc070cd9e398c8d19e61db7c7410a6b2675dfbf5d34"
+    "5b804d201add502d5ce2dfcb091ce9997bbebe57306f383e4d588103f036f7e85d1934d152a323"
+    "e4a8db451d6f4a5b1b0f102cc150e02feee2b88dea4ad4c1baccb24d84072d14e1d24a6771f740"
+    "8ee30564fb86d4393a34bcf0b788501d193303f13a2284b001f0f649eaf79328d4ac5c430ab441"
+    "4920a9460ed1b7bc40ec653e876d09abc509ae45b525190116a0c26101848298509c1c3bf3a483"
+    "e7274054e15e97075036e989f60932807b5257751e79"; 
+
+      MSG_LEN = strlen(msg)/2;
+      printf("MSG_LEN: %d\n", MSG_LEN);
+      printf("msg: %s\n", msg);
+      
+      MSG_LEN = 0;
+      MSG_LEN = count_bytes_in_array_buffer (msg, display_N_values_per_line);
+      printf("Number of characters: %d\n", MSG_LEN);
+
+      char* sometext;
+      int sometext_len = MSG_LEN+1; // +1 for null char
+      
+      sometext = malloc(sometext_len);
+
+      memset(sometext, 65, sometext_len); // 65 is ascii for `A`
+      count_bytes_in_array_buffer (sometext, display_N_values_per_line);
+      memcpy(sometext, msg, 10);   // copy the 1st 10 char (or bytes, that is reserved for storing the char)   
+      count_bytes_in_array_buffer (sometext, display_N_values_per_line);
+
+	
 }
 
 int test_usage_get_set_bits()
