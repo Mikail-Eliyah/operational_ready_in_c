@@ -38,6 +38,7 @@
 int test_usage_check_on_malloc_success_and_location(void);
 int test_usage_locating_stack_address(void);
 int test_usage_of_memcpy(void);
+int test_usage_work_area(void);
 
 bool check_malloc_success_status(char* memory_location_start);
 

@@ -6,7 +6,62 @@
 =====================================================================
 */
 // global variables
+#define DATA_SIZE 20
 
+int display_N_values_per_line = 5;
+
+int test_usage_work_area()
+{ 
+	INFO(">> ");
+	
+	int i, data_int[DATA_SIZE];
+	char data_char[DATA_SIZE];
+
+	int dataIntToInitiateTo = 0;
+	char dataCharToInitiateTo = 'x';
+
+	memset(data_int, dataIntToInitiateTo, sizeof(data_int)); // can be used for clearing: zeroing out array  
+	memset(data_char, dataCharToInitiateTo, sizeof(data_char));  
+ 
+	// Print out array
+	for (int i=0; i<DATA_SIZE; i++) { 
+		fprintf(stdout, "data[%u]: %u\t",i,data_int[i]);
+		
+		if ((i+1) % display_N_values_per_line == 0){
+			printf("\n");
+		}
+    }
+	printf("\n");
+
+    fprintf(stdout, "data_char: %s\n", &data_char); 
+
+	// For clearing string
+	char data_str[]="The wheels on the bus go round and round.";
+memset(data_str,'*',10);
+ 
+	fprintf(stdout,"%s\n",data_str); // output: ********** on the bus go round and round.
+
+	// To clear or zero out a C structure (a structure is simply variables)
+	// set in a line in memory (usually byte aligned):
+	typedef struct     {
+		int number;
+		char *name;
+		char *address;
+		char *birthdate;
+		char gender;
+	} myData;
+
+	
+	myData item; // struct
+	memset(&item, 0xea, sizeof(item));// clear myData structure
+	
+	printf("struct size: %d\n", sizeof(item));
+	
+	// Use sizeof macro to ensure you have covered the correct size of memory when using memset.
+	print_memory_contents((unsigned char *) &item, sizeof(item), display_N_values_per_line, "struct item: \n");
+    
+	printf("%s\n", DEMARCATOR_STRING);
+}
 
 int test_usage_check_on_malloc_success_and_location()
 { 
@@ -109,8 +164,6 @@ int test_usage_of_memcpy()
 
 	// assign values
     printf("\n\nAssign values to src:\n");
-	
-	int display_N_values_per_line = 5;
 
 	// assign values to memory regions
 	for (int i=0;i<len;i++) {
