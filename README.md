@@ -5,10 +5,10 @@
 
 2. C: <a href="https://medium.com/@mikaileliyah/c-bits-and-bytes-a7bdd872efc2">Bits and Bytes</a>
 
-3. C: Memory [In progress]
-4. C: Addresses [In progress]
-5. C: Pointers [In progress]
-6. C: Bytes and Buffers [In progress]
+3. C: Memory 				<i>[In progress]</i>
+4. C: Addresses 			<i>[In progress]</i>
+5. C: Pointers 				<i>[In progress]</i>
+6. C: Bytes and Buffers 	<i>[In progress]</i>
 
 <PRE>
 Created: 2019-06-09_1503hr_57sec
