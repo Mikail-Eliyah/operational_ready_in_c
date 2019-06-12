@@ -9,7 +9,7 @@
 3. C: Memory 				<i>[In progress]</i>
 4. C: Addresses 			<i>[In progress]</i>
 5. C: Pointers 				<i>[In progress]</i>
-6. C: Bytes and Buffers 	<i>[In progress]</i>
+6. C: Bytes and Buffers 		<i>[In progress]</i>
 </PRE>
 
 <PRE>
