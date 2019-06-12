@@ -6,17 +6,17 @@
 =========================================================
 */
 
-int updateBits(int targetBinary, int binaryToInsert, int positionStartToInsert, int positionEndToInsert) { // [positionEndToInsert]....[positionStartToInsert]
+int update_bits(int target_binary, int binary_to_insert, int start_position_to_insert, int end_position_to_insert) { // [end_position_to_insert: // high_bit_position]....[start_position_to_insert: // low_bit_position]
  int max = ~0; /* All 1’s */
 
- // 1’s through position positionEndToInsert, then 0’s
- int left = max - ((1 <<positionEndToInsert) - 1);  // creating a 'left mask'
- // 1’s after position [positionStartToInsert]
- int right = ((1 <<positionStartToInsert) - 1);     // creating a 'right mask'
- // 1’s, with 0s between [positionStartToInsert] and [positionEndToInsert]
+ // 1’s through position end_position_to_insert, then 0’s
+ int left = max - ((1 <<end_position_to_insert) - 1);  // creating a 'left mask'
+ // 1’s after position [start_position_to_insert]
+ int right = ((1 <<start_position_to_insert) - 1);     // creating a 'right mask'
+ // 1’s, with 0s between [start_position_to_insert] and [end_position_to_insert]
  int mask = left | right;                            // creating a mask at the specific position
- // Clear [positionStartToInsert] through [positionEndToInsert], then put [binaryToInsert] in there
- return (targetBinary& mask) | (binaryToInsert<<positionStartToInsert);
+ // Clear [start_position_to_insert] through [end_position_to_insert], then put [binary_to_insert] in there
+ return (target_binary& mask) | (binary_to_insert <<start_position_to_insert);
 }
 
 /* Create a string of binary digits based on the input value.
@@ -27,7 +27,7 @@ int updateBits(int targetBinary, int binaryToInsert, int positionStartToInsert, 
    Returns address of string or NULL if not enough space provided.*/
 
 // static 
-char* binrep (unsigned int val, char *buff, int sz) {
+char* display_unsigned_int_as_hex_string (unsigned int val, char *buff, int sz) {
     char *pbuff = buff;
     int counterPosition = 0;
 
@@ -64,18 +64,37 @@ char* binrep (unsigned int val, char *buff, int sz) {
     return pbuff+1;
 }
 
-void printbits(unsigned char v) {
+
+void zeroize_buffer (void* buff, size_t size)
+{
+        size_t i;
+        char* foo = buff;
+        for (i = 0; i < size; i++)
+            foo[i] = 0;
+
+}
+
+void set_buffer_to_ones (void* buff, size_t size)
+{
+        size_t i;
+        char* foo = buff;
+        for (i = 0; i < size; i++)
+            foo[i] = 0xFF;
+
+}
+
+void print_bits(unsigned char v) {
   int i; // for C89 compatability
   for(i = 7; i>= 0; i--) 
 putchar('0' + ((v >>i) & 1));
 }
 
-int getBit(int n, int index) 
+int get_bit(int n, int index) 
 {
  return ((n & (1 << index)) > 0);
 }
 
-int setBit(int n, int index, int bitValue) 
+int set_bit(int n, int index, int bitValue) 
 {
  if (bitValue) {
  return n | (1 << index);
@@ -85,7 +104,7 @@ int setBit(int n, int index, int bitValue)
  }
 }
 
-int binStrToDecValue (char binStr[], int binStrLen) 
+int binary_string_to_decimal_value (char binStr[], int binStrLen) 
 {
      int i = 0;
      int decValue = 0;
@@ -100,12 +119,12 @@ int binStrToDecValue (char binStr[], int binStrLen)
 }
 
 
-int countBytesInArray (char *includes[]) 
+int count_bytes_in_array (char *buffer[]) 
 {
     //size_t count = 0;
     char count = 0;
-    while (includes[count] != NULL) {
-          printf("\t %c\n", includes[count]); 
+    while (buffer[count] != NULL) {
+          printf("buffer content[%d]: \t %c\n", count, buffer[count]); 
           count++;
     }
     // Length is count.
@@ -144,7 +163,7 @@ int find_bn_MSB(const uint32 *v, size_t N)
 
 // Mask all odd bits with 10101010 in binary (which is 0xAA), then shift them left to put them in the even bits. 
 // Then, perform a similar operation for even bits. This takes a total 5 instructions.
-int swapOddEvenBits(int x) 
+int swap_odd_even_bits(int x) 
 {
  return ( ((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << 1) );
 }

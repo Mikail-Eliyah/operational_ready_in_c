@@ -44,23 +44,26 @@
 */
 // void myPrintHelloMake(void);
 int test_usage_insert_bits_as_substring_and_display_binary_string(void);
+int test_usage_determine_buffer_size(void);
 
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
 =========================================================
 */
-int updateBits(int targetBinary, int binaryToInsert, int positionStartToInsert, int positionEndToInsert);
+void zeroize_buffer (void* buff, size_t size);
+void set_buffer_to_ones (void* buff, size_t size);
 
-char* binrep (unsigned int val, char *buff, int sz);
-void printbits(unsigned char v);
+int update_bits (int target_binary, int binary_to_insert, int start_position_to_insert, int end_position_to_insert);
 
-int getBit(int n, int index);
-int setBit(int n, int index, int bitValue);
+char* display_unsigned_int_as_hex_string (unsigned int val, char *buff, int sz);
+void print_bits(unsigned char v);
+int binary_string_to_decimal_value (char binStr[], int binStrLen);
 
-int binStrToDecValue (char binStr[], int binStrLen);
+int get_bit(int n, int index);
+int set_bit(int n, int index, int bitValue);
 
-int countBytesInArray (char *includes[]);
+int count_bytes_in_array (char *buffer[]);
 int find_MSB32(uint32 a);
 int find_bn_MSB(const uint32 *v, size_t N);
-int swapOddEvenBits(int x);
+int swap_odd_even_bits(int x);
