@@ -61,6 +61,39 @@ memset(data_str,'*',10);
 	print_memory_contents((unsigned char *) &item, sizeof(item), display_N_values_per_line, "struct item: \n");
     
 	printf("%s\n", DEMARCATOR_STRING);
+	
+	char str1[15], str2[15];
+	int ret;
+
+	memcpy(str1,"abcdefgh", strlen("abcdefgh"));
+	memcpy(str2,"ABCDEFGh", strlen("ABCDEFGh")); // abcdefgh
+	
+	printf("%d\n", strlen("abcdef"));
+
+	ret = memcmp(str1, str2, 5);
+
+	if(ret > 0){
+		printf("str1 is < str2\n");
+	} else if(ret < 0){
+		printf("str2 is > str1\n");
+	} else{
+		printf("str1 is == str2\n");
+	}
+	
+	const char dest[] = "abcdefghi";
+	const char src[]  = "123456789";
+
+	printf("Before memmovedest = %s, src = %s\n", dest, src);
+	memmove((void *) dest, (void *) src, 2);
+	printf("After memmovedest = %s, src = %s\n", dest, src);
+   
+/*
+Before memmovedest = abcdefghi, src = 123456789
+After memmovedest = 12cdefghi, src = 123456789
+*/   
+
+
+	printf("%s\n", DEMARCATOR_STRING);
 }
 
 int test_usage_check_on_malloc_success_and_location()
