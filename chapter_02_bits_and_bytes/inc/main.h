@@ -47,6 +47,7 @@ int test_usage_insert_bits_as_substring_and_display_binary_string(void);
 int test_usage_determine_buffer_size_and_bit_position(void);
 int test_usage_get_set_bits(void);
 int test_usage_display_binary_string(void);
+int test_usage_bit_wise_determination(void);
 
 /*
 =========================================================
@@ -69,3 +70,5 @@ int count_bytes_in_array (char *buffer[]);
 int find_MSB32(uint32 a);
 int find_MSB_bit_position(const uint32 *v, size_t N);
 int swap_odd_even_bits(int x);
+
+int hamming_distance_between_2_integer (int a, int b);

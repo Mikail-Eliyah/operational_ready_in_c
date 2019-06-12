@@ -9,6 +9,16 @@
 
 char buffer[BUFFER_SIZE + 1];	// char* buffer = malloc(BUFFER_SIZE + 1);
 
+int test_usage_bit_wise_determination()
+{ 
+	INFO(">> ");
+	
+	int a = 31, b = 14;
+	int distCount = hamming_distance_between_2_integer (a, b);
+	printf ("The distance is : %d.\n", distCount); // distance is : 2.
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}
 
 int test_usage_insert_bits_as_substring_and_display_binary_string()
 { 

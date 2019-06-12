@@ -166,3 +166,15 @@ int swap_odd_even_bits(int x)
 {
  return ( ((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << 1) );
 }
+
+
+int hamming_distance_between_2_integer (int a, int b) {
+    int count = 0;
+    int c = 0;
+    
+    for (c = a ^ b; c != 0; c = c >> 1) {  // while (c !=0, shift out the last bit)
+        count += c & 1;  // if the last bit is '1', add to count
+    }
+    return count;
+}
+
