@@ -8,7 +8,7 @@
 // global variables
 
 
-int test_usage_check_on_malloc_success()
+int test_usage_check_on_malloc_success_and_location()
 { 
 	INFO(">> ");
 	
@@ -16,15 +16,51 @@ int test_usage_check_on_malloc_success()
     // printf("%d\n", strlen(s));
     
     char* allocatedStrBuf = (char*) malloc( sizeof( char ) * ( strlen(s) + 1 ) ); // add 1 more to include the null char. Cast to (char*).
+	
+	if(check_malloc_success_status(allocatedStrBuf) == true)
+	{
+		printf("Malloc operation is OK.\n"); 
+	} 
+	
+	int  *base;
+    int i,j;
+    int cnt = 3;
+    int sum = 0;
+    int extensionForMoreMemory = 10;
 
-    if(allocatedStrBuf == NULL ) {
-         /* Malloc failed, deal with it */
-         // According to the Single Unix Specification, malloc will return NULL and set errno when it fails.
-         fprintf(stderr, "failed to allocate memory.\n");
-         exit(-1);         
-    } else {
-        printf("Malloc operation is OK.\n"); 
-    } 
+    base = (int *)malloc(cnt * sizeof(int));
+	print_memory_location_of_malloc(base, "Base of allocation: "); // Location of the malloc
+
+    if(!base)
+        printf("Unable to allocate size \n");
+    else {
+      for(j = 0;j <cnt; j++)
+          *(base+j)=5;
+    }
+	
+    for(j = 0;j <cnt; j++)
+      sum = sum + *(base+j);
+
+    printf("total sum is %d\n",sum);
+    free(base);
+
+	print_memory_location_of_malloc(base, "Base of allocation after freeing memory: ");
+
+    base = (int *)malloc(cnt * sizeof(int)*extensionForMoreMemory);
+	print_memory_location_of_malloc(base, "Base of re-allocation of an extended size: ");
+    free(base);
+
+    base = (int *)calloc(10,2);
+	print_memory_location_of_malloc(base, "Base of re-allocation of the previous size: ");
+    free(base);
+        
+/*
+Base of allocation is 7280392
+total sum is 15
+Base of allocation after freeing memory is 7280392
+Base of re-allocation of an extended size is 7280520
+Base of re-allocation of the previous size is 7280392
+*/    
     
 	printf("%s\n", DEMARCATOR_STRING);
 }

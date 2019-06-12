@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <limits.h> 
+#include <stdbool.h>
 
 /*
 ==================================================
@@ -34,9 +35,11 @@
 ============= || USAGE FUNCTIONS || ==============
 ==================================================
 */
-int test_usage_check_on_malloc_success(void);
+int test_usage_check_on_malloc_success_and_location(void);
 int test_usage_locating_stack_address(void);
 int test_usage_of_memcpy(void);
+
+bool check_malloc_success_status(char* memory_location_start);
 
 /*
 =========================================================
@@ -48,3 +51,5 @@ int print_memory_contents(unsigned char* start_of_location_memory, int length, i
 int zerorize_memory_contents(unsigned char* start_of_location_memory, int length);
 
 int fill_memory_contents_with_given_value (unsigned char* start_of_location_memory, int length, int given_value);
+
+void print_memory_location_of_malloc(void* memory_location, char* description);
