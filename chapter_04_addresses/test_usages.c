@@ -144,4 +144,47 @@ The next stack is 0xffffcbec
 	printf("%s\n", DEMARCATOR_STRING);
 }
 
+int test_usage_check_distance_between_addressed_memory()
+{ 
+	INFO(">> ");
+	
+     unsigned char text_start[] =
+    { 0x65, 0x77, 0x05, 0x00,
+      0xaa, 0x34, 0x5f, 0xdd, 0xf0, 0x0d, 0x11};     
+     unsigned char *text_start_p = text_start;
+     unsigned char text_end[] =
+    { 0x65, 0x77, 0x05, 0x00,
+      0xaa, 0x34, 0x5f, 0xdd, 0xf0, 0x0d, 0x11, 0x11};   
+     unsigned char *text_end_p = text_end; 
+     
+     // dbg("%x, %x, %x, %x, %x, %x, %x\n", text_start[0], text_start[1], text_start[2], text_start[3], text_start[4], text_start[5], text_start[6]);
+     // printf("%x, %x, %x, %x, %x, %x, %x, %x\n", text_start[0], text_start[1], text_start[2], text_start[3], text_start[4], text_start[5], text_start[6]);
+     // printf("%x, %x, %x, %x, %x, %x, %x\n", text_start[0], text_start[1], text_start[2], text_start[3], text_start[4], text_start[5], text_start[6]);
+     
+     printf("location start: %x \n", text_start);
+     printf("%x\n", *(text_end + 33));
+     printf("%x\n", (text_end + 33));
+     printf("location end: %x \n", text_end);     
+     
+     int distance = 0;
+     // hunt for the direction
+     if (text_start < text_end) {
+        printf("incremental addressing\n");     
+        
+        while (text_start != (text_end-distance)) {
+           distance++;
+        }                
+     } else {
+        printf("decremental addressing\n");
+        
+        while (text_start != (text_end+distance)) {
+           distance++;
+        }                               
+     }
+     
+     printf("They are %d bytes apart.\n", distance);       // They are 32 bytes apart.
+
+
+	printf("%s\n", DEMARCATOR_STRING);
+}
 
