@@ -1,18 +1,79 @@
 #include "main.h"
 
-/*
-=====================================================================
-============= || USAGE FUNCTIONS FOR EXTERNAL CALLS || ==============
-=====================================================================
-*/
 // global variables
 #define DATA_SIZE 20
 
 int display_N_values_per_line = 5;
 
+/*
+==================================================
+============= || LOCAL FUNCTIONS || ==============
+==================================================
+*/
 void f(){
 	printf("You called me ... \n");
 	
+}
+
+// for test_usage_choosing_function_at_runtime()
+enum test_types {
+    A,          //0
+    B,          //1
+    I,          //2
+    E,          //3
+};
+
+int numberOfTestTypes = 4;	// 4 test types *_test()
+
+void a_test() {
+	ANNOUNCE_FUNCTION_CALLED();
+    printf("a test\n");       
+}
+
+void b_test() {
+	ANNOUNCE_FUNCTION_CALLED();
+    printf("b test\n");       
+}
+
+void i_test() {
+	ANNOUNCE_FUNCTION_CALLED();
+    printf("i test\n");       
+}
+
+void e_test() {
+	ANNOUNCE_FUNCTION_CALLED();
+    printf("e test\n");       
+}
+
+
+static int (*test_func[]) (void) = {
+    [A] = a_test,
+    [B] = b_test,
+    [I] = i_test,
+    [E] = e_test,
+};
+
+/*
+=====================================================================
+============= || USAGE FUNCTIONS FOR EXTERNAL CALLS || ==============
+=====================================================================
+*/
+int test_usage_choosing_function_at_runtime()
+{ 
+	INFO(">> ");
+	
+	int i;
+	i = 2; // I-test
+
+	if (i < numberOfTestTypes)
+		test_func[i]();   // choose the test to run // output: i-test
+	
+	for (i=0; i < numberOfTestTypes; i++){
+		// printf('Running test_func[%d]() \n', i);
+		test_func[i]();
+	}
+	
+	printf("%s\n", DEMARCATOR_STRING);
 }
 
 int test_usage_reading_addresses()

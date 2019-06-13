@@ -22,7 +22,10 @@
     fprintf(stderr, "%s\n", msg); \
 	fprintf(stderr, "%s\n", DEMARCATOR_STRING);
 	
-
+#define ANNOUNCE_FUNCTION_CALLED() \
+	fprintf(stderr, "[invoke]:\n<file>: %s \n<function>:%s \n<line>: %d\n", __FILE__, __FUNCTION__, __LINE__); \
+	fprintf(stderr, "%s\n", DEMARCATOR_STRING);
+	
 /*
 ==================================================
 =============== || DEFINE TYPES || ===============
@@ -42,6 +45,7 @@ int test_usage_passing_pointer_as_argument(void);
 int test_usage_pointer_trials(void);
 int test_usage_check_if_agnostic_function_is_designated(void);
 int test_usage_write_data_to_specific_memory_regions(void);
+int test_usage_choosing_function_at_runtime(void);
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
