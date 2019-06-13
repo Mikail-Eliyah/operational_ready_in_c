@@ -10,23 +10,6 @@
 
 int display_N_values_per_line = 5;
 
-int test_usage_memory_bound()
-{ 
-	INFO(">> ");
-	
-	int* memoryLocation = 0;
-        
-     memoryLocation = (int*) integritycheck_text_start();
-     printf("memoryLocation [start]: %x \n", memoryLocation);
-     memoryLocation = (int*) integritycheck_text_mid();
-     printf("memoryLocation [mid]: %x \n", memoryLocation);
-     memoryLocation = (int*) integritycheck_text_end();
-     printf("memoryLocation [end]: %x \n", memoryLocation);    
-
-	printf("%s\n", DEMARCATOR_STRING);
-	
-}
-
 int test_usage_work_area()
 { 
 	INFO(">> ");
@@ -194,35 +177,6 @@ Base of re-allocation of the previous size is 7280392
 /*
 
 */
-int test_usage_locating_stack_address()
-{ 
-	INFO(">> ");
-	
-    int i;
-	printf("The stack top is near %p\n", &i);
-	printf("The next stack is %p\n", &i+1);
-
-    int k;    
-	printf("The stack for k is near %p\n", &k);
-	printf("The next stack is %p\n", &k+1);
-
-/* e.g.
-The stack top is near 0028FF3C
-The next stack is 0028FF40
-The stack for k is near 0028FF38
-The next stack is 0028FF3C
-
-The stack top is near 0xffffcbec
-The next stack is 0xffffcbf0
-The stack for k is near 0xffffcbe8
-The next stack is 0xffffcbec
-
-*/    
-
-	printf("%s\n", DEMARCATOR_STRING);
-}
-
-
 int test_usage_of_memcpy()
 { 
 	INFO(">> ");

@@ -55,17 +55,6 @@ int fill_memory_contents_with_given_value (unsigned char* start_of_location_memo
     }
 }
 
-const void *integritycheck_text_start(void) {
-    return (void *)integritycheck_text_start;
-}
-
-const void *integritycheck_text_mid(void) {
-    return (void *)integritycheck_text_mid;
-}
-
-const void *integritycheck_text_end(void) {
-    return (void *)integritycheck_text_end;
-}
 
 void changeContents (int* a, int sizeOfA, int increment, int *b, int sizeOfB) {
     int i, indexOfA;

@@ -38,18 +38,16 @@
 ==================================================
 */
 int test_usage_check_on_malloc_success_and_location(void);
-int test_usage_locating_stack_address(void);
 int test_usage_of_memcpy(void);
 int test_usage_work_area(void);
-int test_usage_memory_bound(void);
-
-bool check_malloc_success_status(char* memory_location_start);
 
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
 =========================================================
 */
+bool check_malloc_success_status(char* memory_location_start);
+
 int print_memory_contents(unsigned char* start_of_location_memory, int length, int display_N_values_per_line, char* description);
 
 int zerorize_memory_contents(unsigned char* start_of_location_memory, int length);
