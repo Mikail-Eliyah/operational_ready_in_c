@@ -3,10 +3,14 @@ This is a makefile \
 
 IDIR =./inc
 CC=gcc
-CFLAGS=-I$(IDIR)
 
 ODIR=obj
-LDIR =../lib
+LDIR =./lib
+DIR_TEST_USAGES =./test_usages
+CFLAGS=-I$(IDIR)
+
+VPATH=$(LDIR), $(DIR_TEST_USAGES) 	# include c files in this folder for compilations
+
 # header files required
 _DEPS = *.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
