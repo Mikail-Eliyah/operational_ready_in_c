@@ -3,9 +3,7 @@
 
 1. C: <a href="https://medium.com/@mikaileliyah/c-set-up-ed7e3014c371">Setting Up</a>
 
-<PRE>
-2. C: Trace And Debug 			<i>[In progress]</i>
-</PRE>
+2. C: <a href="https://medium.com/@mikaileliyah/c-trace-and-debug-757b71862313">Trace And Debug</a>
 
 3. C: <a href="https://medium.com/@mikaileliyah/c-bits-and-bytes-a7bdd872efc2">Bits and Bytes</a>
 
@@ -18,5 +16,5 @@
 
 <PRE>
 Created: 2019-06-09_1503hr_57sec
-Updated: 2019-06-13_1923hr_10sec
+Updated: 2019-06-13_2008hr_28sec
 </PRE>
