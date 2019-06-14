@@ -13,9 +13,12 @@
 #define TRUE 1
 #define FALSE 0
 
+// Set modes and status using directives to deviate options
 // Tagging comments to dis/en-able code for different configuration
 #define OFF 0
 #define ON 1
+
+#define OPERATION_STATUS ON 
 
 #define PI 3.14159265
 #define DEMARCATOR_STRING "==========================================================="
