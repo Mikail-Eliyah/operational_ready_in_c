@@ -108,7 +108,7 @@ Integer >>> 555
 
 }	
 	
-int test_show_configurations()
+int test_usage_show_configurations()
 { 
 	INFO(">> ");
 	
@@ -132,3 +132,42 @@ int test_show_configurations()
 	printf("%s\n", DEMARCATOR_STRING);
 }
 
+int test_usage_timer(){
+	INFO(">> ");
+	
+	unsigned int seconds_to_sleep = 3;
+		
+	clock_t begin, end;
+	double time_spent;
+
+	begin = clock();
+
+	int result = 0;
+	// sleep(seconds_to_sleep);	/* operation to be timed */
+	for (int i = 0; i < 10000; i++){
+		for (int j = 0; j < 10000; j++){
+			result = i + j;
+		}
+	}
+
+	end = clock();
+	time_spent = (double)(end - begin) * 1000.0 / CLOCKS_PER_SEC;
+	
+	printf("Time taken: %50.100f ms\n", time_spent);
+	printf("\nTime elapsed: %.2f\n",1.0*(end-begin)/CLOCKS_PER_SEC);
+
+    time_t timer;
+    char buffer[25];
+    struct tm* tm_info;
+
+    time(&timer);
+    tm_info = localtime(&timer);
+
+    //strftime(buffer, 25, "%Y:%m:%d  %H:%M:%S", tm_info);
+    strftime(buffer, 25, "%Y-%m.%d_%H%Mhr", tm_info);
+    puts(buffer);
+    
+	printf("Now: %s\n", buffer);  
+
+	printf("%s\n", DEMARCATOR_STRING);
+}

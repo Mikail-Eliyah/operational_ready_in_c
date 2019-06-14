@@ -4,6 +4,8 @@
 #include <string.h>
 #include <limits.h> 
 #include <stdbool.h>
+#include <time.h>
+#include <unistd.h>
 
 /*
 ==================================================
@@ -59,7 +61,8 @@
 ==================================================
 */
 int test_usage_configuration_switches(void);
-int test_show_configurations(void);
+int test_usage_show_configurations(void);
+int test_usage_timer(void);
 
 /*
 =========================================================
