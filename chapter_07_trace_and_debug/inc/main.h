@@ -30,6 +30,8 @@
 	fprintf(stderr, "[invoke]:\n<file>: %s \n<function>:%s \n<line>: %d\n", __FILE__, __FUNCTION__, __LINE__); \
 	fprintf(stderr, "%s\n", DEMARCATOR_STRING);
 	
+#define LINE_NUMBER_OF_WHICH_CODE_FILE fprintf(stderr,"[LOG] %s:%d\n",__FILE__,__LINE__);
+	
 /*
 ==================================================
 =============== || DEFINE TYPES || ===============
