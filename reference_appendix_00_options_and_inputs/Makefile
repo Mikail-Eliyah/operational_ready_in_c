@@ -7,9 +7,10 @@ CC=gcc
 ODIR=obj
 # LIB_SRC_DIR =./lib
 LDIR =./lib
+DIR_TEST_USAGES =./test_usages
 CFLAGS=-I $(IDIR)   
 
-VPATH=$(LDIR)
+VPATH=$(LDIR):$(DIR_TEST_USAGES)
 
 # header files required
 _DEPS = *.h
@@ -18,7 +19,7 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 #_DEP_LIB = *.c									#
 #DEPS_LIB = $(patsubst %,$(LDIR)/%,$(_DEP_LIB))	#
 
-_OBJ = lib.o main.o test_usages.o 
+_OBJ = lib.o main.o test_usages_00.o test_usages_01.o #*.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)		## $(DEPS_LIB)
@@ -36,7 +37,12 @@ run: $(OBJ)
 	gcc -o $@ $^ $(CFLAGS)
 	echo "=========================================================="
 	#./run '4' 'abcd' 'arg3' 'arg4' 'arg5' 'arg6' 'arg7'
-	./run 6 112233445566
+	#./run 6 112233445566
+	#./run -a -b
+	#./run --file hello.txt
+	#./run -a
+	#./run -b
+	#./run
 	echo "=========================================================="
 	
 

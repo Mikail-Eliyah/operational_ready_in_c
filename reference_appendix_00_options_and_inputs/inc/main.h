@@ -7,6 +7,9 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <ctype.h>
+#include <getopt.h>
+
 /*
 ==================================================
 ============= || DEFINE CONSTANTS || =============
@@ -50,7 +53,11 @@
 ============= || USAGE FUNCTIONS || ==============
 ==================================================
 */
-int test_usage_check_options(int argc, char *argv[]);
+int test_usage_check_options_00(int argc, char *argv[]);
+int test_usage_check_options_01(int argc, char *argv[]);
+int test_usage_check_options_02(int argc, char *argv[]);
+
+int test_usage_check_inputs(int argc, char *argv[]);
 
 /*
 =========================================================
