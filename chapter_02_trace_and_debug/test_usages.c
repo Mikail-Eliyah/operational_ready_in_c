@@ -5,16 +5,55 @@
 #define TEST1 OFF
 #define TEST2 ON
 
-int display_N_values_per_line = 5;
+#define TEST_ON    ON
+
+// #define OPERATOR ON	// comment, then uncomment this for testing
+
+int FLAG_GLOBAL = OFF;    // globally accessed with access control
 
 /*
 ==================================================
 ============= || LOCAL FUNCTIONS || ==============
 ==================================================
 */
-#define TEST_ON    ON
-                                    
+int check_mode_set(int ON_OFF)
+{
 
+#ifdef OPERATION_STATUS
+    if (OFF == OPERATION_STATUS) {
+        printf("OPERATION_STATUS OFF ... exiting ... \n");
+        return OFF;
+    }
+
+    printf("OPERATION_STATUS ON. \n");
+
+    #ifdef OPERATOR
+		printf("OPERATOR defined. \n");
+	#endif
+		
+    #ifndef OPERATOR
+		printf("OPERATOR not defined. \n");
+        #define STATUS_MSG_FOR_OPERATOR "OPERATOR rights."
+        #define OPERATOR ON
+
+    printf("STATUS_MSG_FOR_OPERATOR: %s \n", STATUS_MSG_FOR_OPERATOR);
+    #endif
+
+    printf("Configuring ... \n");
+        if (ON == ON_OFF)
+            FLAG_GLOBAL = ON;
+    printf("Configuring ... [DONE]. \n");
+
+    return FLAG_GLOBAL;
+#else
+    printf("OPERATION_STATUS NOT_SUPPORTED ... exiting ... \n");
+    return OFF;
+#endif
+
+}
+
+                                    
+// 
 void printThis(
 #if TEST_ON
               float f) {
@@ -80,6 +119,15 @@ int test_show_configurations()
     SHOW_DEFINE(SPINACH);
     SHOW_DEFINE(MEDUSA);
     SHOW_DEFINE(ATHENA);
+
+	printf("%s\n", DEMARCATOR_STRING);
+	
+	printf("self-test: \n");
+
+    int ON_OFF = ON;
+
+    int status = check_mode_set (ON_OFF);
+    printf("FLAG_GLOBAL is: %s. \n", FLAG_GLOBAL?"ON":"OFF");
 
 	printf("%s\n", DEMARCATOR_STRING);
 }
