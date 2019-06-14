@@ -20,6 +20,16 @@
 
 #define OPERATION_STATUS ON 
 
+#define STR(x)   #x
+#define SHOW_DEFINE(x) printf("%s=%s\n", #x, STR(x))
+
+#define BETA -6
+#define KNOX 0xF00D
+#define SPINACH KNOX
+#define MEDUSA POISEDON
+#define ATHENA
+
+
 #define PI 3.14159265
 #define DEMARCATOR_STRING "==========================================================="
 
@@ -49,6 +59,7 @@
 ==================================================
 */
 int test_usage_configuration_switches(void);
+int test_show_configurations(void);
 
 /*
 =========================================================

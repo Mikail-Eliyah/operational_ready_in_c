@@ -69,5 +69,18 @@ Integer >>> 555
 
 }	
 	
+int test_show_configurations()
+{ 
+	INFO(">> ");
+	
+	// print defines
+    SHOW_DEFINE(ALPHA_ABSENT);
+    SHOW_DEFINE(BETA);
+    SHOW_DEFINE(KNOX);
+    SHOW_DEFINE(SPINACH);
+    SHOW_DEFINE(MEDUSA);
+    SHOW_DEFINE(ATHENA);
 
+	printf("%s\n", DEMARCATOR_STRING);
+}
 

@@ -4,7 +4,7 @@
 1. C: <a href="https://medium.com/@mikaileliyah/c-set-up-ed7e3014c371">Setting Up</a>
 
 <PRE>
-2. C: Trace And Debug 		<i>[In progress]</i>
+2. C: Trace And Debug 			<i>[In progress]</i>
 </PRE>
 
 3. C: <a href="https://medium.com/@mikaileliyah/c-bits-and-bytes-a7bdd872efc2">Bits and Bytes</a>
