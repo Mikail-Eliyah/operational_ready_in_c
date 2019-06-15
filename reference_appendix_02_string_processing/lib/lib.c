@@ -7,6 +7,8 @@
 =========================================================
 */
 
+
+
 // returns numberOfDectection
 int findPositionsOfDelimiterCharacters (char* text, char* delimitChar){
     

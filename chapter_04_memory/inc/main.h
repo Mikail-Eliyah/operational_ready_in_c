@@ -40,6 +40,7 @@
 int test_usage_check_on_malloc_success_and_location(void);
 int test_usage_of_memcpy(void);
 int test_usage_work_area(void);
+int test_usage_check_if_within_memory_bounds(void);
 
 /*
 =========================================================
@@ -57,3 +58,5 @@ int fill_memory_contents_with_given_value (unsigned char* start_of_location_memo
 void print_memory_location_of_malloc(void* memory_location, char* description);
 
 void changeContents (int* a, int sizeOfA, int increment, int *b, int sizeOfB);
+
+int withinMemoryRangeCheck(unsigned long addr, unsigned long size, unsigned long start, unsigned long end);

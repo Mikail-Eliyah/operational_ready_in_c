@@ -63,6 +63,7 @@ int test_usage_string_encapsulation(void);
 int test_usage_string_case(void);
 int test_usage_string_position(void);
 int test_usage_string_format(void);
+int test_usage_string_copy(void);
 
 /*
 =========================================================

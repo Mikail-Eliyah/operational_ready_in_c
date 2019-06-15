@@ -75,4 +75,8 @@ void changeContents (int* a, int sizeOfA, int increment, int *b, int sizeOfB) {
     }
 }
 
-
+// memory boundary access check
+int withinMemoryRangeCheck(unsigned long addr, unsigned long size, unsigned long start, unsigned long end) 
+{
+    return (addr>= start) && (addr + size <= end);
+} 

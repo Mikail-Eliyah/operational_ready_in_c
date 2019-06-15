@@ -10,6 +10,36 @@
 
 int display_N_values_per_line = 5;
 
+
+int test_usage_check_if_within_memory_bounds()
+{ 
+	INFO(">> ");
+	
+	int i = 0xdeed;
+	
+	unsigned long addr = (unsigned long) &i;
+	unsigned long size = 0xffff; // 0x10; 
+	unsigned long start = 0;
+	unsigned long end = 0xffffcbc8; // 0xF8FF3C; // 0x100 = 256 bytes from offset 0
+
+	int isWithinMemoryRange = withinMemoryRangeCheck(addr, size, start, end);
+
+	if (isWithinMemoryRange)
+        printf("isWithinMemoryRange, top of stack starts at %p\n", &i);
+	else
+        printf("isNotWithinMemoryRange, top of stack starts at %p\n", &i);
+        
+/*
+# define start_confines 0x....
+# define end_confines 0x....
+
+        withinMemoryRangeCheck((void*)addr, sizeof(structstuctItem), start_confines, end_confines));
+*/
+
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}
+	
 int test_usage_work_area()
 { 
 	INFO(">> ");

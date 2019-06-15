@@ -16,6 +16,32 @@ int display_N_values_per_line = 20;
 ============= || USAGE FUNCTIONS FOR EXTERNAL CALLS || ==============
 =====================================================================
 */
+int test_usage_string_copy()
+{
+	INFO(">> ");
+	// Between char* array and char[] array transfer
+
+	// copy char* array to char[] array
+	// copy char[] array to char* array
+
+    char array1[20] = "abcdefg";
+    char* array2;
+    
+    array2 = (char*) malloc((strlen(array1)+1)*sizeof(char));
+    memcpy(array2, array1, strlen(array1)+1); // including "\0"
+    
+    printf("array2: %s\n", array2);
+    //free(array2);
+    printf("array2: %s\n", array2);
+    strcpy(array1, "x1001x");
+    printf("array1: %s\n", array1);
+    
+    memcpy(array1, array2, strlen(array2)+1); // including "\0"
+    printf("array1: %s\n", array1);
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}
+
 int test_usage_string_tokenizer()
 {
 	INFO(">> ");
