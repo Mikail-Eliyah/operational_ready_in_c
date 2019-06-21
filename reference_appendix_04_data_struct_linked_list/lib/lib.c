@@ -7,6 +7,59 @@
 =========================================================
 */
 
+/* Checks whether the value x is present in linked list */
+bool search_iterative_for_Node_of_doubly_linked_list(struct Node_of_doubly_linked_list* head, int x) 
+{ 
+    struct Node_of_doubly_linked_list* current = head;  // Initialize current 
+    while (current != NULL) 
+    { 
+        if (current->data == x) 
+            return true; 
+        current = current->next; 
+    } 
+    return false; 
+} 
+
+bool search_recursive_for_Node_of_doubly_linked_list(struct Node_of_doubly_linked_list* head, int x) 
+{  
+    if (head == NULL) // Base case
+        return false; 
+      
+    // If key or data is present in current node, return true 
+    if (head->data == x) 
+        return true; 
+  
+    // Recur for remaining list 
+    return search_recursive_for_Node_of_doubly_linked_list(head->next, x); 
+} 
+
+bool search_iterative_for_Node_of_singly_linked_list(struct Node_of_singly_linked_list* head, int x) 
+{ 
+    struct Node_of_singly_linked_list* current = head;  // Initialize current 
+    while (current != NULL) 
+    { 
+        if (current->data == x) 
+            return true; 
+        current = current->next; 
+    } 
+    return false; 
+} 
+
+bool search_recursive_for_Node_of_singly_linked_list(struct Node_of_singly_linked_list* head, int x) 
+{ 
+    if (head == NULL) // Base case
+        return false; 
+      
+    // If key or data is present in current node, return true 
+    if (head->data == x) 
+        return true; 
+  
+    // Recur for remaining list 
+    return search_recursive_for_Node_of_singly_linked_list(head->next, x); 
+} 
+
+
+
 void append_for_Node_of_singly_linked_list(struct Node_of_singly_linked_list** head_ref, int new_data) 
 { 
     /* 1. allocate node */

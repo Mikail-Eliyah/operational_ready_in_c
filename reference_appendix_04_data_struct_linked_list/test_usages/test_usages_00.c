@@ -128,7 +128,19 @@ int test_usage_singly_linked_list()
 		append_for_Node_of_singly_linked_list(&head_00, values[i]);
 	}
 	
-	printList_for_Node_of_singly_linked_list(head_00); 
+	printList_for_Node_of_singly_linked_list(head_00);
+
+	int value_to_search_for = 21;
+	search_iterative_for_Node_of_singly_linked_list(head_00, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
+	
+	value_to_search_for = 7;
+	search_iterative_for_Node_of_singly_linked_list(head_00, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
+	
+	value_to_search_for = 21;
+	search_recursive_for_Node_of_singly_linked_list(head_00, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
+	
+	value_to_search_for = 7;
+	search_recursive_for_Node_of_singly_linked_list(head_00, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
 
 	printf("%s\n", DEMARCATOR_STRING);
 }
@@ -167,6 +179,18 @@ int test_usage_doubly_linked_list()
   
     printf("Doubly linked list after deletion at index %d\n", deleteNodeAtPosition);
     printList_for_Node_of_doubly_linked_list(head); 
+	
+	int value_to_search_for = 21;
+	search_iterative_for_Node_of_doubly_linked_list(head, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
+	
+	value_to_search_for = 8;
+	search_iterative_for_Node_of_doubly_linked_list(head, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
+	
+	value_to_search_for = 21;
+	search_recursive_for_Node_of_doubly_linked_list(head, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
+	
+	value_to_search_for = 8;
+	search_recursive_for_Node_of_doubly_linked_list(head, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
 	
 	printf("%s\n", DEMARCATOR_STRING);
 }

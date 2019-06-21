@@ -72,6 +72,14 @@ int test_usage_doubly_linked_list(void);
 ============= || SUB-ROUTINES FUNCTIONS || ==============
 =========================================================
 */
+
+/* Checks whether the value x is present in linked list */
+bool search_iterative_for_Node_of_doubly_linked_list(struct Node_of_doubly_linked_list* head, int x);
+bool search_recursive_for_Node_of_doubly_linked_list(struct Node_of_doubly_linked_list* head, int x);
+
+bool search_iterative_for_Node_of_singly_linked_list(struct Node_of_singly_linked_list* head, int x);
+bool search_recursive_for_Node_of_singly_linked_list(struct Node_of_singly_linked_list* head, int x);
+
 void append_for_Node_of_singly_linked_list(struct Node_of_singly_linked_list** head_ref, int new_data);
 
 /* Given a reference (pointer to pointer) to the head of a list 
