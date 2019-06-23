@@ -1,21 +1,15 @@
-$gcc -o hello_main hello_main.c hello_function.c -Wall -I./inc
-$./hello_main
+================================================================================================
+Manipulating and controlling memory contents is useful at lower level applications, especially in embedded systems. Though it comes with complications, we will address this capability for now, without addressing how it can be misuse or abuse. Memory location of a content or contents of the memory location can be changed outside a program code in many ways. For example, a DMA read from a disk can write into a buffer, or a memory mapped device can change a location because of some event on the device. The fine granular access and manipulation would be useful in some use cases where direct controls is required, e.g.  value of a variable or memory region can be changed by several threads and we can inspect or modify it for specific system control. 
+================================================================================================
 
-=============
-with makefile
-==============
-to compile:
-$ make
+[Ensure Up-to-date Value With 'volatile']
 
-to clean:
-$ make clean
+In some situations, memory can be altered outside current thread :
+-a multi-threaded application,
+-an application using shared memory,
+-an application running on a platform that maps I/O registers into the address space,
+-an application with hardware DMA occurring in the background.
 
-to compile and run:
-$ make run
-
-
-
-make -npr run print all variables, rules and so on, but not the built-ins.
-make -nd run print all decisions.
-
-make -n run shows (but doesn't run) all expected command lines.
+'volatile' is useful in the case of data that could be modified by an asynchronous event, such as the execution of signal handler code (i.e. signal handler code modified the variable). By adding 'volatile', compiler interprets that "value stored in this variable (memory location) might change without code doing anything." These addresses, for example, will be "synchronized" with the memory on each access for multi-threading applications. It tells compiler optimizer that operations involving this variable should not be optimized - anytime the value of a variable is change in register, then the value should affect the memory. `volatile` ensures that what is read out of the variable is not based on the compiler's optimization or an old copy of the variable that the program had.  'volatile' ensures that variable is fetched from memory on every access. 
+ 
+================================================================================================
