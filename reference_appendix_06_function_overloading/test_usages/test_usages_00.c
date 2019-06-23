@@ -1,7 +1,7 @@
 #include "main.h"
 
 // global variables
-#define ARGUMENT_KEY_POSITION 2
+enum case_types {param_0, param_1, param_2, param_3, NOT_VALID}; 
 
 /*
 ==================================================
@@ -15,45 +15,53 @@ void overload_00(int p1)
 
 void overload_01(double *p1, const char *p2)
 {
-	printf("2 params: %p (%f) %s\n", p1, *p1, p2);
+	printf("2 params: %p %d (%f) %s\n", p1, *p1, *p1, p2);
 }
 
 void overload_02(int p1, int p2, int p3)
 {
-	printf("3 params: %c %d %d\n", p1, p2, p3);
+	printf("3 params: %d %d %d\n", p1, p2, p3);
 }
 
-void overload_main(int case_index, ...)
+void overload_main(int number_of_arguments, ...)
 {
+	// enum case_types case_type;
+	
 	va_list valist; // va_list is a type to hold information about variable arguments
-	va_start(valist, case_index); // va_start must be called before accessing variable argument list
+	va_start(valist, number_of_arguments); // va_start must be called before accessing variable argument list
 	
 	// Now arguments can be accessed 1 by 1 with va_arg macro 
 	// Initialize arg_1st as 1st argument in list    
-	int arg_1st = va_arg(valist, int); 
-	printf("arg_1st: %d \n", arg_1st);
+	//int arg_1st = va_arg(valist, int); 
+	//printf("arg_1st: %d \n", arg_1st);
 	
-	printf("CASE: %d\n", case_index);
+	printf("CASE: %d\n", number_of_arguments);
 			
-	switch(case_index)
+	switch(number_of_arguments)
 	{
-		case 1:
+		case param_1:
 		{
+			//printf("%s \n", typename(valist));
 			int p1 = va_arg(valist, int);
 			overload_00(p1);
 			break;
 		}
 		
-		case 2:
+		case param_2:
 		{
+			//printf("%s \n", typename(valist));
+			//printf("%s \n", typename(valist));
 			double *p1 = va_arg(valist, double *);
 			const char *p2 = va_arg(valist, const char *);
 			overload_01(p1, p2);
 			break;
 		}
 		
-		case 3:
+		case param_3:
 		{
+			//printf("%s \n", typename(valist));
+			//printf("%s \n", typename(valist));
+			//printf("%s \n", typename(valist));
 			int p1 = va_arg(valist, int);
 			int p2 = va_arg(valist, int);
 			int p3 = va_arg(valist, int);
@@ -86,21 +94,32 @@ int test_usage_overload_functions()
 {
 	INFO(">> ");
 	
-	int p[] = {1, 2, 3, 4};
+	int p[] = {101, 202, 303, 404};
 	double *p1 = (double *)&p[1];
-	const char *p2 = (char *)&p[2];
+	char letter = 'm';
+	const char *p2 = &letter;
 	
 	int case_index = 0;
-	case_index = 1;
-	overload_main(case_index);
-	case_index = 3;
+	case_index = param_1;
+	overload_main(case_index, p[0]);
+	
+	case_index = param_1;
+	overload_main(case_index);	// lacking arguments will be pointed to uninitialized memory
+	
+	case_index = param_3;
 	overload_main(case_index, p[0], p[1]);
-	case_index = 3;
-	overload_main(case_index, p[0], p[1], p[2]);
-	case_index = 4;
-	overload_main(case_index, p[0], p[1], p[2], p[3]);
-	case_index = 2;
+	case_index = param_3;
+	overload_main(case_index, p[0], p[1], p[2]);	// extra arguments will be omitted
+	
+	case_index = param_3;
+	overload_main(case_index);	// lacking arguments will be pointed to uninitialized memory	
+	
+	case_index = param_2;
 	overload_main(case_index, p1, p2);
+	
+	case_index = NOT_VALID;
+	overload_main(case_index, p[0], p[1], p[2], p[3]);	// extra arguments will be omitted
+
 	// overload_main(p1, p2, p1, p2);
 	
     printf("\n");    
