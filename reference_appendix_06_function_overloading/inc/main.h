@@ -69,6 +69,7 @@ long long int: "long long int", unsigned long long int: "unsigned long long int"
 ==================================================
 */
 int test_usage_overload_functions(void);
+int test_usage_return_mutiple_values(void);
 
 /*
 =========================================================
