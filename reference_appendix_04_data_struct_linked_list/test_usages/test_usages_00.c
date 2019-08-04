@@ -192,5 +192,18 @@ int test_usage_doubly_linked_list()
 	value_to_search_for = 8;
 	search_recursive_for_Node_of_doubly_linked_list(head, value_to_search_for)? printf("%d found.\n", value_to_search_for) : printf("%d not found.\n", value_to_search_for); 
 	
+	struct Node_of_doubly_linked_list* chosen_node;
+	chosen_node = head->next;
+	
+	printf("Before insertBefore_for_Node_of_doubly_linked_list: \n");
+	printList_for_Node_of_doubly_linked_list(head); 
+	
+	printf("Before insertBefore_for_Node_of_doubly_linked_list chosen node data: %d\n", chosen_node->data);
+	
+	// Insert 88, before the 2nd node, i.e. head->next. So linked list becomes 4->88->1->7->NULL 
+    insertBefore_for_Node_of_doubly_linked_list(&head, chosen_node, 88); 
+
+    printList_for_Node_of_doubly_linked_list(head); 
+	
 	printf("%s\n", DEMARCATOR_STRING);
 }
