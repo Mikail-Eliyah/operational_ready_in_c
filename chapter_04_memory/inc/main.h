@@ -41,6 +41,7 @@ int test_usage_check_on_malloc_success_and_location(void);
 int test_usage_of_memcpy(void);
 int test_usage_work_area(void);
 int test_usage_check_if_within_memory_bounds(void);
+int test_usage_check_memory_assignment(void);
 
 /*
 =========================================================
