@@ -42,6 +42,7 @@ int test_usage_locating_stack_address(void);;
 int test_usage_memory_bound(void);
 int test_usage_reading_addresses(void);
 int test_usage_check_distance_between_addressed_memory(void);
+int test_usage_check_memory_address_assignment(void);
 
 /*
 =========================================================
