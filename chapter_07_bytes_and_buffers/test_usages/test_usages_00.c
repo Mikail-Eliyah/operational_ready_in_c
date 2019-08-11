@@ -3,19 +3,56 @@
 // global variables
 #define SIZE_TO_PAD_TO 60 // 20
 
-int display_N_values_per_line = 5;
+int display_N_values_per_line = 2; // 8
 
 /*
 ==================================================
 ============= || LOCAL FUNCTIONS || ==============
 ==================================================
 */
+void displayArray(char** plaintext, int size)
+{
+    int i;
+
+    for(i=0; i < size; i++) 
+    {
+        printf("%02X ", (0xff & (*plaintext)[i]));
+        if(((i+1)% display_N_values_per_line) == 0)    // as index starts from 0, (i+1)
+            printf("\n");
+    }
+}
+
 
 /*
 =====================================================================
 ============= || USAGE FUNCTIONS FOR EXTERNAL CALLS || ==============
 =====================================================================
 */
+
+int test_usage_copy_bytes()
+{ 
+	INFO(">> ");
+    
+    char plaintext[] = {
+         0xCD,  0x76,  0x43,  0xF0,
+         0x72,  0xA4,  0xA0,  0x82,
+    };
+
+    int numberOfItems = sizeof(plaintext);
+
+     char* plaintextCopy;
+     plaintextCopy = (char*) malloc(numberOfItems*sizeof(char));
+
+     memcpy(plaintextCopy, plaintext, numberOfItems);
+
+     displayArray(&plaintextCopy, numberOfItems);
+
+    
+
+	printf("%s\n", DEMARCATOR_STRING);
+	return 0;
+}	
+
 int test_usage_dynamic_string_buffer_size()
 { 
 	INFO(">> ");

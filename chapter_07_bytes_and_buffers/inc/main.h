@@ -48,6 +48,7 @@
 */
 int test_usage_pad_bytes(void);
 int test_usage_dynamic_string_buffer_size(void);
+int test_usage_copy_bytes(void);
 
 /*
 =========================================================
