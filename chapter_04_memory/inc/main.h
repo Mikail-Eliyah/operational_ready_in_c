@@ -42,6 +42,7 @@ int test_usage_of_memcpy(void);
 int test_usage_work_area(void);
 int test_usage_check_if_within_memory_bounds(void);
 int test_usage_write_a_byte_to_register_with_specific_memory_address(void);
+int test_usage_memset_different_from_cpy_due_to_null_byte(void);
 
 /*
 =========================================================

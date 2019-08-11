@@ -59,3 +59,4 @@ run: $(OBJ)
 clean:
 	echo "cleaning ...." $(ODIR)/*.o
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ ./*.exe
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ ./run.exe.stackdump

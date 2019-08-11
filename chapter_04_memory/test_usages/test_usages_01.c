@@ -67,3 +67,42 @@ int test_usage_write_a_byte_to_register_with_specific_memory_address ()
 	
 	printf("%s\n", DEMARCATOR_STRING);
 }	
+
+
+int test_usage_memset_different_from_cpy_due_to_null_byte ()
+{ 
+	INFO(">> ");
+	
+	// memset/ cpy behaves differently for bytes and str char due to '\0' (null char)
+
+	char str[50];
+   char strToCopy[17];
+   int numberOfBytesToFill = 7; // fills 1st n bytes of the memory area pointed to
+   char charToFillInAs = '*'; //48: ascii for '0' // '$';
+   void* targetStartAddress = str;
+   //strncpy(strToCopy, "tOsEe The wOrLd", strlen("tOsEe The wOrLd")+1); // +1 copy null char, else there will be no termination
+// strncpy won't write the null terminator if the string is truncated so you'd need to add it yourself
+	strncpy(strToCopy, "tOsEe The wOrLd", sizeof(strToCopy));
+   strToCopy[sizeof(strToCopy)-1] = '\0';  //null terminate in case of truncation.
+   puts(strToCopy); // print
+   
+   strcpy(str, "Test statement !@#$%^&*()=+_~```::||{}[]");
+   puts(str); // print
+
+   memset(targetStartAddress, charToFillInAs, numberOfBytesToFill); //  fill memory with a constant byte (ie. charToFillInAs)
+   puts(str); // print
+   
+   memcpy(targetStartAddress, strToCopy, strlen(strToCopy)+1); // +1 for null char   
+   puts(str); // print ()
+   
+/*
+tOsEe The wOrLd
+Test statement !@#$%^&*()=+_~```::||{}[]
+*******atement !@#$%^&*()=+_~```::||{}[]
+tOsEe The wOrLd // puts terminated by '\0'
+tOsEe The wOrLd@#$%^&*()=+_~```::||{}[] // memcpy(targetStartAddress, strToCopy, strlen(strToCopy)); // +1 ommitted for null char   
+
+*/  
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}	
