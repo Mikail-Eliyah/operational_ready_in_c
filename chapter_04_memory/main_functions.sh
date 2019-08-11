@@ -25,6 +25,7 @@ function make_clean(){
 
 function compile_and_run(){
 	echo $demarcator
+	make clean;
 	make run;
 	echo $demarcator
 }
