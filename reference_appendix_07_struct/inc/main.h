@@ -25,6 +25,9 @@
 #define OFF 0
 #define ON 1
 
+// #define NULL ""
+#define SAME 0
+
 #define BUF_SIZE 16
 
 #define OPERATION_STATUS ON 
@@ -71,7 +74,10 @@ if you're on a 64-bit platform, because pointers just don't fit in 32 bits. Henc
 */
 int test_usage_struct_00(void);
 int test_usage_struct_01(void);
-
+int test_usage_struct_02(void);
+int test_usage_fitting_1_struct_in_another_by_memcpy(void);
+int test_usage_struct_extract_array_from_array_within_a_struct(void);
+int test_usage_pass_a_struct_to_another_struct_within_a_struct(void);
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
