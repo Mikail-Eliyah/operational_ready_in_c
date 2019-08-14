@@ -20,6 +20,10 @@
 #define TRUE 1
 #define FALSE 0
 
+#define UP   "UP\0"
+#define DOWN "DOWN\0"
+
+
 // Set modes and status using directives to deviate options
 // Tagging comments to dis/en-able code for different configuration
 #define OFF 0
@@ -75,6 +79,8 @@ if you're on a 64-bit platform, because pointers just don't fit in 32 bits. Henc
 int test_usage_struct_00(void);
 int test_usage_struct_01(void);
 int test_usage_struct_02(void);
+int test_usage_struct_03(void); 
+
 int test_usage_fitting_1_struct_in_another_by_memcpy(void);
 int test_usage_struct_extract_array_from_array_within_a_struct(void);
 int test_usage_pass_a_struct_to_another_struct_within_a_struct(void);
