@@ -93,6 +93,15 @@ backToken: +=+test+=+test+=+
 */
 
 	printf("%s\n", DEMARCATOR_STRING);
+	// recursively split the string into front and back tokens. If there is no more to split, either the front or back tokens will be empty. 
+	while (strlen(backToken) != 0 ) {
+      stringTokenizer (backToken, delimiterChars, frontToken, backToken);
+      
+      printf("frontToken: %s \n", frontToken);
+      printf("backToken: %s \n", backToken);
+	}
+
+	printf("%s\n", DEMARCATOR_STRING);
 }
 
 int test_usage_string_format(){
