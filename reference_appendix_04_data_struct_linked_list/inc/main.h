@@ -58,6 +58,7 @@
 		struct Node_of_doubly_linked_list* next; // Pointer to next node in DLL 
 		struct Node_of_doubly_linked_list* prev; // Pointer to previous node in DLL 
 	};
+	
 
 /*
 ==================================================
@@ -66,6 +67,8 @@
 */
 int test_usage_singly_linked_list(void);
 int test_usage_doubly_linked_list(void);
+
+int test_usage_singly_linked_list_static_object(void);
 
 /*
 =========================================================
