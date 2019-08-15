@@ -47,8 +47,6 @@ int test_usage_copy_bytes()
 
      displayArray(&plaintextCopy, numberOfItems);
 
-    
-
 	printf("%s\n", DEMARCATOR_STRING);
 	return 0;
 }	

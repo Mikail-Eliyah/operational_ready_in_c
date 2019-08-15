@@ -53,6 +53,7 @@ int test_usage_bit_wise_determination(void);
 
 int test_usage_bit_wise_operations(void);
 
+
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
