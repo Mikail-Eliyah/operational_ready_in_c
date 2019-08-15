@@ -84,6 +84,9 @@ int test_usage_struct_03(void);
 int test_usage_fitting_1_struct_in_another_by_memcpy(void);
 int test_usage_struct_extract_array_from_array_within_a_struct(void);
 int test_usage_pass_a_struct_to_another_struct_within_a_struct(void);
+
+int test_usage_struct_nested_hierarchical_composite_struct(void);
+
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
