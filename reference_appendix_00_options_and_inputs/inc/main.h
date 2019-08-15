@@ -10,6 +10,8 @@
 #include <ctype.h>
 #include <getopt.h>
 
+
+
 /*
 ==================================================
 ============= || DEFINE CONSTANTS || =============
@@ -56,6 +58,9 @@
 int test_usage_check_options_00(int argc, char *argv[]);
 int test_usage_check_options_01(int argc, char *argv[]);
 int test_usage_check_options_02(int argc, char *argv[]);
+int test_usage_check_options_03(int argc, char *argv[]);
+int test_usage_check_options_04(int argc, char *argv[]);
+int test_usage_check_options_05(int argc, char *argv[]);
 
 int test_usage_check_inputs(int argc, char *argv[]);
 
