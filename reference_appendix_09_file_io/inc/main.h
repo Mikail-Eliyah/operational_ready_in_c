@@ -65,6 +65,8 @@
 // int test_usage_check_data_format(void);
 int test_usage_displays_file_names_in_directory(void);
 int test_usage_file_stat(int argc, char* argv[]);
+int test_usage_00(void);
+int test_usage_create_and_read_files(void);
 
 /*
 =========================================================
