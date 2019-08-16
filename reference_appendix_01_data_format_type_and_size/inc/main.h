@@ -18,6 +18,13 @@
 #define TRUE 1
 #define FALSE 0
 
+#define NULL ""     // use NULL as a delimiter
+#define SAME 0
+
+
+#define lengthOfArray(x)  (sizeof(x) / sizeof(x[0]))
+
+
 // Set modes and status using directives to deviate options
 // Tagging comments to dis/en-able code for different configuration
 #define OFF 0
@@ -54,10 +61,29 @@
 ==================================================
 */
 int test_usage_check_data_format(void);
+int test_usage_get_integer_and_decimal_part_of_given_value(void);
+int test_usage_unique_symbols_aka_histogram(void);
+int test_usage_set_data_by_passing_addresses(void);
+int test_usage_display_data_00(void);
 
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
 =========================================================
 */
+int findPositionOfChar (char* targetStr, int lengthOfStr, char charToTrack);
+// mantissa is assumed to exist.
+void getIntegerAndDecimalValues (char* n, int strlen_n, char intPart[], char decPart[]);
+void nonHexCharDetector (char* strTarget, int strTargetLength);
+void ASCII_CharsHistogram (char* strTarget, int strTargetLength, int asciiHistogramCount[]);
+void displayASCII_CharsHistogram (int asciiHistogramCount[]);
+
+void int_set_right(int* y, int valueToSet);
+void array_set(int* y_dest, int* y_src, int arrayLength);
+
+int safeCopy(char *from, int from_len, char *to, int to_len);
+
+// static 
+void print_text(char *intro_message, unsigned char *text_addr, unsigned int size);
+
 
