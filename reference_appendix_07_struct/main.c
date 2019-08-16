@@ -9,7 +9,9 @@ int main(int argc, char *argv[]) {
 	// test_usage_pass_a_struct_to_another_struct_within_a_struct();
 	
 	// test_usage_struct_03();
-	test_usage_struct_nested_hierarchical_composite_struct();
+	// test_usage_struct_nested_hierarchical_composite_struct();
+	// test_usage_create_data_struct_for_big_numbers();
+	test_usage_struct_04();
 	
   return(0);
 }

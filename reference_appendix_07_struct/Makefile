@@ -19,7 +19,7 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 #_DEP_LIB = *.c									#
 #DEPS_LIB = $(patsubst %,$(LDIR)/%,$(_DEP_LIB))	#
 
-_OBJ = lib.o main.o test_usages_00.o test_usages_01.o test_usages_02.o test_usages_03.o #*.o
+_OBJ = lib.o main.o test_usages_00.o test_usages_01.o test_usages_02.o test_usages_03.o test_usages_04.o #*.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)		## $(DEPS_LIB)

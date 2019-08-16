@@ -57,7 +57,7 @@
 ==================================================
 */
   typedef unsigned int uint32;
-  typedef unsigned intsize_t;
+  // typedef unsigned int size_t;
   
 /* The code may work for a 32-bit device but not 64-bits.
 if you're on a 64-bit platform, because pointers just don't fit in 32 bits. Hence, remediation can be made to the code by changing the type from uint32_t to uint8_t. */
@@ -80,12 +80,14 @@ int test_usage_struct_00(void);
 int test_usage_struct_01(void);
 int test_usage_struct_02(void);
 int test_usage_struct_03(void); 
+int test_usage_struct_04(void);
 
 int test_usage_fitting_1_struct_in_another_by_memcpy(void);
 int test_usage_struct_extract_array_from_array_within_a_struct(void);
 int test_usage_pass_a_struct_to_another_struct_within_a_struct(void);
 
 int test_usage_struct_nested_hierarchical_composite_struct(void);
+int test_usage_create_data_struct_for_big_numbers(void);
 
 /*
 =========================================================
