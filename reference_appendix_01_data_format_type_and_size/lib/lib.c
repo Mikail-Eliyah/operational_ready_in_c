@@ -1,11 +1,155 @@
 #include "main.h"
+#include <stdlib.h>
+#include <limits.h>
 
+#define CHAR_BITS CHAR_BIT
+
+/*
+char *my_itoa(int num, char *str)
+{
+        if(str == NULL)
+        {
+                return NULL;
+        }
+        sprintf(str, "%d", num);
+        return str;
+}
+*/
+
+const char *my_itoa_buf(char *buf, size_t len, int num)
+{
+  static char loc_buf[sizeof(int) * CHAR_BITS]; /* not thread safe */
+
+  if (!buf)
+  {
+    buf = loc_buf;
+    len = sizeof(loc_buf);
+  }
+
+  if (snprintf(buf, len, "%d", num) == -1)
+    return ""; /* or whatever */
+
+  return buf;
+}
+
+const char *my_itoa(int num)
+{ return my_itoa_buf(NULL, 0, num); }
 
 /* 
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
 =========================================================
 */
+// to-be corrected
+/*
+char** hexBytesArrayToHexString (int* decValue, int numberOfBytes) {
+     int i = 0;
+     char byteString [3];
+     char** hexStringBytes = malloc(2*sizeof(char)*numberOfBytes + sizeof(char)); // last one is for '\0'
+     strcpy(hexStringBytes, "");  // empty the space
+                              
+        for(i = 0; i < numberOfBytes; i++){
+               // itoa(decValue[i], byteString, 16);
+			   my_itoa_buf(decValue[i], byteString, 16);
+			   
+			   //if(my_itoa(decValue[i], byteString) != NULL) {
+                // printf(">> %s\n", byteString);
+				// }
+				
+              //printf("%s\n", byteString);
+              strncat(hexStringBytes, byteString, 2); 
+              printf(">> %s\n", hexStringBytes);                 
+        }     
+        
+        hexStringBytes[(2*numberOfBytes)] = '\0';
+		// hexStringBytes = "test";
+		
+	return hexStringBytes;
+}
+*/
+
+// input integer array buffer, number of elements, output string
+void hexBytesArrayToHexString (int* decValue, int numberOfBytes, char** hexStringInBytes) {
+     int i = 0;
+     char byteString [3]; // [2]
+     char* hexStringBytes = "";
+     hexStringBytes = malloc(2*sizeof(char)*numberOfBytes + sizeof(char)); // last one is for '\0'
+     strcpy(hexStringBytes, "");  // empty the space
+
+        for(i = 0; i < numberOfBytes; i++){
+              if (decValue[i] < 16) {
+                  sprintf(byteString, "0%x", decValue[i]);
+              } else {
+                  sprintf(byteString, "%x", decValue[i]);
+              }
+
+              strncat(hexStringBytes, byteString, 2);
+        }
+
+        hexStringBytes[(2*numberOfBytes)] = '\0';
+        //printf("%s\n", hexStringBytes);
+
+        *hexStringInBytes = hexStringBytes;
+}
+
+// insert space in between to format byte wise
+void hexStringToHexByteString (unsigned char *hexString, unsigned char ** hexStringBytesInStrFormatted) {
+    int i = 0;
+    int numberOfBytes = (strlen(hexString)/2);
+    printf("number of bytes : %u\n\n", numberOfBytes);
+
+    int numberOfSpaces = numberOfBytes-1;
+    char* hexStringBytesInStr = (char*) malloc((strlen(hexString)+ numberOfSpaces+ 1)*(sizeof(char))); // add 1 (sizeof(char) for '\0'    // use 32 bytes space allocated: max{key, data}
+    printf("Unformatted hex strings : %s\n\n", hexString);
+
+    //strncat(hexStringBytesInStr, hexString, strlen(hexString));
+
+    for (i = 0; i < numberOfBytes; i++) {
+        //printf("> : %c\n\n", hexString[i]);
+        strncat(hexStringBytesInStr, &hexString[(i*2)], 1);
+        strncat(hexStringBytesInStr, &hexString[((i*2)+1)], 1);
+        strncat(hexStringBytesInStr, " ", 1);
+    }
+
+    hexStringBytesInStr[(2*numberOfBytes)+numberOfSpaces] = '\0';
+    //printf("Formatted hex strings : %s\n\n", hexStringBytesInStr);
+    *hexStringBytesInStrFormatted = hexStringBytesInStr;
+}
+
+// convert hexdecimal string (key and data) to int array (hexadecimal values) and placed in allocated buffer starting from the buffer index 0
+void hexStringToHexBytesArray (unsigned int inputHexBytes[], unsigned char *hexStringBytesInStr,
+        unsigned int size) {
+
+     char* hexStringBytes = "";
+     // printf("%s\n", hexStringBytesInStr);
+
+     hexStringBytes = (char*) malloc((strlen(hexStringBytesInStr)+ 1)*(sizeof(char))); // add 1 (sizeof(char) for '\0'    // use 32 bytes space allocated: max{key, data}
+     memcpy(hexStringBytes, (hexStringBytesInStr), strlen(hexStringBytesInStr));         // copy the input key string into the processing buffer
+
+     // printf("target string : %s\n\n", hexStringBytes);
+
+     //char byteInStr[3] = ""; // XX\0
+     char byteInStr[5] = "0x"; // 0xXX\0
+     int numberOfBytes = (strlen(hexStringBytes)/2);
+     int i = 0;
+     //numberOfBytes = (int) (size);
+
+     printf("number of bytes : %u\n\n", numberOfBytes);
+        // convert the keys
+        for(i = 0; i < numberOfBytes; i++){
+              strncat(byteInStr, &hexStringBytes[(i*2)], 1);           // insert the 1st hex character
+              strncat(byteInStr, &hexStringBytes[(i*2)+1], 1);      // insert the 2nd hex character
+              byteInStr[4] = '\0';
+              inputHexBytes[i] = (int)strtol(byteInStr, NULL, 0);   // without "0x" header, last paramater is 16
+              //printf("STR>>> %s \n", byteInStr);
+              //printf("HEX>>> %x \n", sendCommand->genericInputBuffer[i]);
+              strcpy(byteInStr, "0x");
+         }
+
+     free(hexStringBytes);    // prepare for re-allocation
+}
+
+
 int findPositionOfChar (char* targetStr, int lengthOfStr, char charToTrack) {
     int i=0;
     int positionOfCharToTrack = -1;            // assume out of bounds

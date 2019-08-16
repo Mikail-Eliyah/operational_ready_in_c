@@ -1,8 +1,10 @@
 #include "main.h"
 
+
 // global variables
 #define ARGUMENT_KEY_POSITION 2
 #define BUF_SIZE 16
+
 
 int display_N_values_per_line = 20;
 
@@ -53,9 +55,8 @@ int test_usage_set_data_by_passing_addresses(){
 
     safeCopy(stringSource, strlen(stringSource), stringDestination, strlen(stringSource));
         printf("%s\n", stringDestination);  // tHis Is a TesT string!!!
+		
 
-
-	
 	printf("%s\n", DEMARCATOR_STRING);
 }	
 

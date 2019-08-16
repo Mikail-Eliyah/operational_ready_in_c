@@ -66,11 +66,19 @@ int test_usage_unique_symbols_aka_histogram(void);
 int test_usage_set_data_by_passing_addresses(void);
 int test_usage_display_data_00(void);
 
+int test_usage_00(void);
+int test_usage_display_data_01(void);
+int test_usage_display_data_02(void);
+
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
 =========================================================
 */
+// char** hexBytesArrayToHexString (int* decValue, int numberOfBytes);
+void hexBytesArrayToHexString (int* decValue, int numberOfBytes, char** hexStringInBytes);
+void hexStringToHexByteString (unsigned char *hexString, unsigned char ** hexStringBytesInStrFormatted);
+
 int findPositionOfChar (char* targetStr, int lengthOfStr, char charToTrack);
 // mantissa is assumed to exist.
 void getIntegerAndDecimalValues (char* n, int strlen_n, char intPart[], char decPart[]);

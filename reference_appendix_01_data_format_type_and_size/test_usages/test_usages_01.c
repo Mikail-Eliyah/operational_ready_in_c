@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#define BUF_SIZE 16
 
 /*
 ==================================================
@@ -122,12 +123,67 @@ static void print_text_00 (const char *tag, const char *data, size_t datalen)
     print2(tag, (unsigned char *)buffer, datalen / 2);
 }
 
+
+
 /*
 =====================================================================
 ============= || USAGE FUNCTIONS FOR EXTERNAL CALLS || ==============
 =====================================================================
 */
+int test_usage_display_data_01(){
+	INFO(">> ");
+	/*
+	// (Integer) Byte Array to Hexadecimal String
+	// put decValue into a hex string, hexStringBytes.
+	// target hexadecimal string (the value will change when decValue is inserted)
+	char* hexStringBytes = "11223344556677";
 
+	// 0x6bc1bee22e409f96e93d7e117393172a
+	int* decValue[BUF_SIZE] = {
+  0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 
+  0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a
+	};
+
+	 hexStringBytes = ""; 
+     // hexStringBytes = hexBytesArrayToHexString (decValue, BUF_SIZE);
+	 hexBytesArrayToHexString (decValue, BUF_SIZE, &hexStringBytes);
+               
+     printf("FINAL OUTPUT >>> %s\n", hexStringBytes);
+
+	// FINAL OUTPUT >>> 6bc1bee22e409f96e93d7e117393172a
+	*/
+	 // target hexadecimal string (the value will change when decValue is inserted)
+    char** hexStringBytes = "";
+
+    // 0x6bc1bee22e409f96e93d7e117393172a
+    int decValue[BUF_SIZE] = {
+      0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96,
+      0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a
+    };
+
+    hexBytesArrayToHexString (decValue, BUF_SIZE, &hexStringBytes);
+    printf("Integer array placed in string >>> %s\n", hexStringBytes);
+
+	/*
+    int decValue2[BUF_SIZE];
+
+    hexStringToHexBytesArray (decValue2, hexStringBytes, BUF_SIZE);
+
+    printf("Insert into new integer byte array\n");
+    for (int i = 0;  i < BUF_SIZE;  i++) {
+        printf("%x ", decValue2[i]);
+    }
+    printf("\n");
+
+    //char** hexStringByteFormatted = "";
+
+    //hexStringToHexByteString (hexStringBytes, &hexStringByteFormatted);
+    //printf("Formatted byte string: %s\n", hexStringByteFormatted);
+	*/
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}	
+	
 int test_usage_display_data_00(){
 	INFO(">> ");
 	unsigned char *vbuf_src;
