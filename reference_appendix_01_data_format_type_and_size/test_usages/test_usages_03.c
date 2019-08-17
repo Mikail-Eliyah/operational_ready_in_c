@@ -114,6 +114,36 @@ int test_usage_typedef(){
 	printf("%s\n", DEMARCATOR_STRING);
 }	
 
+#define RAND_MAX_VALUE 51
+
+
+int test_usage_generate_random(){
+	INFO(">> ");
+    int len = 2, breadth = 3, height = 5;
+    int a[height][len][breadth];
+    //srand(time(NULL));
+    int r = (rand()%RAND_MAX_VALUE); // /* random int between 0 and (RAND_MAX_VALUE-1) */
+    // (rand()%(hi_num-low_num))+low_num;
+    int i,j,k;
+    for (i=0;i<height;i++) {
+        for (j=0;j<len;j++) {
+            for (k=0;k<breadth;k++) {
+                //srand(time(NULL));
+                //a[i][j][k] = (rand()%RAND_MAX_VALUE);
+                a[i][j][k] = (i*100)+(j*10)+(k);
+                printf("%3d ", a[i][j][k]);
+            }   
+            printf("\n");
+        }   
+        printf("\n"); 
+    }
+    //int (*r)[5] = a[0];
+    int *t = a[1][2];
+    printf("> %d\n", *t);
+	
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}	
 
 int test_usage_display_data_02(){
 	INFO(">> ");

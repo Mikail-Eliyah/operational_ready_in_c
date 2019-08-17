@@ -70,7 +70,7 @@ int test_usage_00(void);
 int test_usage_display_data_01(void);
 int test_usage_display_data_02(void);
 int test_usage_typedef(void);
-
+int test_usage_generate_random(void);
 
 /*
 =========================================================

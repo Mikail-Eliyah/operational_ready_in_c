@@ -66,6 +66,14 @@ char** hexBytesArrayToHexString (int* decValue, int numberOfBytes) {
 		
 	return hexStringBytes;
 }
+
+//equivalent to: itoa(decValue[i], byteString, 16);
+              if (decValue[i] < 16)  
+     sprintf(byteString, "0%x", decValue[i]); 
+              else
+     sprintf(byteString, "%x", decValue[i]); 
+
+
 */
 
 // input integer array buffer, number of elements, output string

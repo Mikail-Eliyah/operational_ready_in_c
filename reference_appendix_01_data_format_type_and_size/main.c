@@ -9,7 +9,8 @@ int main(int argc, char *argv[]) {
 	// test_usage_00();
 	// test_usage_display_data_01();
 	// test_usage_display_data_02();
-	test_usage_typedef();
+	// test_usage_typedef();
+	test_usage_generate_random();
 	
   return(0);
 }
