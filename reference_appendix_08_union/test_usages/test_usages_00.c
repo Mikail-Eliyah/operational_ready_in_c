@@ -89,6 +89,25 @@ union
   } bits;
 } u;
 
+// int that is 16 bit long. to retrieve the higher 8 bits and the lower 8 bits when I need to read from/store to EEPROM:
+union {
+    int data;
+    struct {
+        unsigned char higher;
+        unsigned char lower;
+    } parts;
+} data; // doesn't require shifting so the code is easier to read.
+
+
+struct _mydata {
+    int which_one;
+    union _data {
+            int a;
+            float b;
+            char c;
+    } foo;
+} bar;
+
 
 
 /*
@@ -117,14 +136,14 @@ int test_usage_union_for_bit_byte_access_in_packed_form()
 	// Union for access of different data format - as they share the same memory space, ie. if only 1 of the either is assigned, the unassigned shares the same memory space, hence, when either of the forms are called, they are seen in different representations
 	
 	// if only 1 of them is assigned, they share the same memory space
-// Convert floating-point bits to integer:
-u.f = 3.14159f;
-printf("As integer: %08x\n", u.i);
+	// Convert floating-point bits to integer:
+	u.f = 3.14159f;
+	printf("As integer: %08x\n", u.i);
 
-printf("The 2nd and 3rd byte (in bits is): %d%d%d%d %d%d%d%d\n", u.bits.b15, u.bits.b14, u.bits.b13, u.bits.b12, u.bits.b11, \
-                                                                 u.bits.b10, u.bits.b9, u.bits.b8);
- printf("Last 2 bytes (in bits is): %d%d%d%d %d%d%d%d\n", u.bits.b7, u.bits.b6, u.bits.b5, u.bits.b4, \
-                                                          u.bits.b3, u.bits.b2, u.bits.b1, u.bits.b0);
+	printf("The 2nd and 3rd byte (in bits is): %d%d%d%d %d%d%d%d\n", u.bits.b15, u.bits.b14, u.bits.b13, u.bits.b12, u.bits.b11, \
+                                                              u.bits.b10, u.bits.b9, u.bits.b8);
+	printf("Last 2 bytes (in bits is): %d%d%d%d %d%d%d%d\n", u.bits.b7, u.bits.b6, u.bits.b5, u.bits.b4, \
+															u.bits.b3, u.bits.b2, u.bits.b1, u.bits.b0);
    
 /*
 [xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx] : integer (32-bits)
@@ -137,6 +156,39 @@ The 2nd and 3rd byte (in bits is): 0000 1011
 Last 2 bytes (in bits is): 1111 0000
 */   
 
+	data.data = 0xfead;
+	
+ 	printf("data_part.higher: %x, data_part.lower: %x\n", data.parts.higher, data.parts.lower); 
+
+
+	enum choice { INTEGER=0, FLOATING, CHARACTER };
+	
+	struct _mydata *bar_form = malloc(sizeof (*bar_form));
+	// bar_form->which_one = 1;
+	//bar_form->foo.a = 11;
+	bar_form->foo.b = 22.22;
+	bar_form->foo.a = 65;
+
+	//bar_form->foo.c = 'z';
+	
+	bar.which_one = 2;
+	
+	// printf("%d \n", sizeof (struct _mydata));
+	printf("choice: %d \n", bar.which_one);
+	
+	switch (bar.which_one)
+	{
+	case INTEGER  :  printf("INTEGER: %d -\n", bar_form->foo.a);
+		/* access bar.foo.a;*/ 
+		break;
+		
+	case FLOATING :  printf("%f \n", bar_form->foo.b);
+		/* access bar.foo.a;*/ 
+		break;
+	case CHARACTER:  printf("%c \n", bar_form->foo.c);
+		/* access bar.foo.a;*/ 
+		break;
+	}
 
 	
     printf("\n");    
@@ -144,4 +196,42 @@ Last 2 bytes (in bits is): 1111 0000
 	printf("%s\n", DEMARCATOR_STRING);
 }
 
-/*  */
+/* 
+struct Vector{
+    double* x;
+    int n;
+};
+
+struct Vector *y = malloc(sizeof *y); 
+y->x = calloc(10, sizeof *y->x);
+
+struct Vector *newVector (size_t sz) {
+    // Try to allocate vector structure.
+
+    struct Vector *retVal = malloc (sizeof (struct Vector));
+    if (retVal == NULL)
+        return NULL;
+
+    // Try to allocate vector data, free structure if fail.
+
+    retVal->data = malloc (sz * sizeof (double));
+    if (retVal->data == NULL) {
+        free (retVal);
+        return NULL;
+    }
+
+    // Set size and return.
+
+    retVal->size = sz;
+    return retVal;
+}
+
+void delVector (struct Vector *vector) {
+    // Can safely assume vector is NULL or fully built.
+
+    if (vector != NULL) {
+        free (vector->data);
+        free (vector);
+    }
+}
+ */
