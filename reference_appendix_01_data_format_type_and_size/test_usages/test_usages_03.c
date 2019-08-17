@@ -4,9 +4,23 @@
 
 /*
 ==================================================
-============== || LOCAL STRUCTS || ===============
+======== || LOCAL STRUCTS / DATA TYPE || =========
 ==================================================
 */
+// as a form of enum
+typedef enum {FALSE_FLAG=0, TRUE_FLAG} Boolean;
+        
+// string type
+typedef char *String;
+
+// object/ struct type
+typedef struct {
+	int age; 
+	char *name;
+	} human;
+
+// type that is under the same data form
+typedef int X0, X1, X2, X3, X4;  
 
 
 /*
@@ -31,7 +45,13 @@
                   
     unsigned int inputHexBytes[64];
 
-
+// struct not needed to be stated
+static const human human_X[] = 
+{
+  { .age = 4, .name = "XX" },
+  { .age = 40, .name = "X" },
+  { .age = 400, .name = "" },
+};
 
 /*
 ==================================================
@@ -58,6 +78,41 @@
 ============= || USAGE FUNCTIONS FOR EXTERNAL CALLS || ==============
 =====================================================================
 */
+
+int test_usage_typedef(){
+	INFO(">> ");
+	
+    String Text = "Kairos";
+    printf("%s\n", Text);
+	
+	Boolean flag = TRUE_FLAG;
+	printf("%d\n", flag);
+	
+	human man, woman, boy, girl;
+	X0 x0_item = 199;
+	
+	girl.age = 15;
+	girl.name = "mary";
+	
+	printf("%s: %d \n", girl.name, girl.age);
+	printf("%s: %d \n", human_X[0].name, human_X[0].age);
+	printf("%d: %x \n", x0_item, x0_item);
+	
+	int i;
+
+	int a[50] = {1,2,[40]=55,56,57,[23]=11,12};
+
+	for (i=0; i < 50;i++) {
+    if (i%10 == 0)
+       printf("\n");
+       
+    printf("%d\t", a[i]);
+    }
+
+
+	
+	printf("%s\n", DEMARCATOR_STRING);
+}	
 
 int test_usage_display_data_02(){
 	INFO(">> ");

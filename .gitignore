@@ -1,0 +1,4 @@
+# ignore main.sh and main_functions.sh
+main.sh
+main_functions.sh
+
