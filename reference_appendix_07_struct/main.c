@@ -11,7 +11,8 @@ int main(int argc, char *argv[]) {
 	// test_usage_struct_03();
 	// test_usage_struct_nested_hierarchical_composite_struct();
 	// test_usage_create_data_struct_for_big_numbers();
-	test_usage_struct_04();
+	// test_usage_struct_04();
+	test_usage_struct_memcpy(argc, argv); // ./run 'aes'
 	
   return(0);
 }
