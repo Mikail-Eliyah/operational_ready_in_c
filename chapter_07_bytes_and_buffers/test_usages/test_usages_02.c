@@ -40,7 +40,15 @@ int test_usage_memcpy_and_strcpy()
 { 
 	INFO(">> ");
     
-  // do_stringCount();   
+  // do_stringCount(); 
+
+	char* stringBytes = "112233445566aa";
+	
+	    char* operationalOptions[2] = {
+          "YES",
+          "NO"
+          };
+
 
     printf(">>> >>> %s\n", stringBytes);
     printf(">>> >>> %d\n", strlen(stringBytes)); // since the string len is know, proper malloc can be done
@@ -64,5 +72,12 @@ int test_usage_memcpy_and_strcpy()
 
 	printf("%s\n", DEMARCATOR_STRING);
 }	
-	
+/*
+// OUTPUT
+73 61 00 00 00  sa    // strbuf
+73 61 00 63 68  sa ch // membuf
+*/
+// strcpy() stops at the '\0' (null) character. It cannot be printed.
+// memcpy() copies the contents at directed by the number of elements, ie. contentLength.
+
 
