@@ -62,6 +62,20 @@ typedef union
 HW_Register regA;
 HW_RegisterB regB;
 
+// breakdown hardware registers into the component bits. So, you can access an 8-bit register into the component bits. This structure would allow a control register to be accessed as a control_byte or via the individual bits. It would be important to ensure the bits map on to the correct register bits for a given endianness.
+
+typedef union {
+    unsigned char control_byte;
+    struct {
+        unsigned int nibble  : 4;
+        unsigned int nmi     : 1;
+        unsigned int enabled : 1;
+        unsigned int fired   : 1;
+        unsigned int control : 1;
+    }
+} ControlRegister;
+
+
 union
 {
   int i;
@@ -107,7 +121,6 @@ struct _mydata {
             char c;
     } foo;
 } bar;
-
 
 
 /*
@@ -194,44 +207,20 @@ Last 2 bytes (in bits is): 1111 0000
     printf("\n");    
 
 	printf("%s\n", DEMARCATOR_STRING);
+	
+	ControlRegister CR_00;
+	CR_00.control_byte = 0xa5; // 5a
+	
+	printf(" \
+	CR_00.nibble: %d\n \
+	CR_00.nmi: %d\n \
+	CR_00.enabled: %d\n \
+	CR_00.fired: %d\n \
+	CR_00.control %d\n \
+	", CR_00.nibble, CR_00.nmi, CR_00.enabled, CR_00.fired, CR_00.control);
+	
+	
+	printf("%s\n", DEMARCATOR_STRING);
 }
 
-/* 
-struct Vector{
-    double* x;
-    int n;
-};
 
-struct Vector *y = malloc(sizeof *y); 
-y->x = calloc(10, sizeof *y->x);
-
-struct Vector *newVector (size_t sz) {
-    // Try to allocate vector structure.
-
-    struct Vector *retVal = malloc (sizeof (struct Vector));
-    if (retVal == NULL)
-        return NULL;
-
-    // Try to allocate vector data, free structure if fail.
-
-    retVal->data = malloc (sz * sizeof (double));
-    if (retVal->data == NULL) {
-        free (retVal);
-        return NULL;
-    }
-
-    // Set size and return.
-
-    retVal->size = sz;
-    return retVal;
-}
-
-void delVector (struct Vector *vector) {
-    // Can safely assume vector is NULL or fully built.
-
-    if (vector != NULL) {
-        free (vector->data);
-        free (vector);
-    }
-}
- */

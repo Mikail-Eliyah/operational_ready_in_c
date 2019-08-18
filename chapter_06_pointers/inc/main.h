@@ -46,6 +46,7 @@ int test_usage_pointer_trials(void);
 int test_usage_check_if_agnostic_function_is_designated(void);
 int test_usage_write_data_to_specific_memory_regions(void);
 int test_usage_choosing_function_at_runtime(void);
+int test_usage_passing_array_and_pointer(void);
 /*
 =========================================================
 ============= || SUB-ROUTINES FUNCTIONS || ==============
